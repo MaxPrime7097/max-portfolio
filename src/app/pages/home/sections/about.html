@@ -1,0 +1,43 @@
+<section appSectionSpy="a-propos" class="section-shell">
+  <div class="grid grid-cols-1 gap-7 wide:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] wide:gap-9">
+    <div>
+      <h2 class="section-title m-0 mb-[22px]">01 — À propos</h2>
+
+      <p class="m-0 mb-[18px] max-w-[52ch] font-sans text-base leading-[1.65] text-bone/70">
+        Je suis Max, étudiant en génie informatique à l'IUC Douala et builder dans l'âme.
+        J'ai commencé à coder parce que j'avais des problèmes autour de moi sans réponse concrète.
+        Alors j'ai construit les réponses moi-même. CampusSphere, AgriGuard, N.O.A.H, Flowdar
+        sont nés de ce même réflexe : voir un problème réel et ne pas attendre que quelqu'un d'autre le règle.
+      </p>
+
+      <p class="m-0 mb-[18px] max-w-[52ch] font-sans text-base leading-[1.65] text-bone/70">
+        Ce qui me drive vraiment c'est de combiner software engineering, IA et entrepreneuriat
+        pour créer des choses qui servent vraiment les gens. Pas des projets vitrine.
+        Des produits déployés, testés, utilisés. Je veux que la technologie soit accessible
+        et adaptée aux réalités africaines, pas copiée-collée d'ailleurs sans réfléchir.
+      </p>
+
+      <p class="m-0 mb-[22px] max-w-[52ch] font-sans text-base leading-[1.65] text-bone/70">
+        En dehors du code, je m'intéresse à la musique, au gaming, au développement personnel et à tout
+        ce qui touche à la créativité. Je crois que les meilleurs builders sont ceux qui savent
+        aussi bien enlever qu'ajouter. Savoir renoncer à une feature qui ne sert à rien,
+        c'est aussi une compétence.
+      </p>
+
+      <blockquote class="m-0">
+        <p class="m-0 max-w-[48ch] font-serif text-[19px] leading-[1.5] text-accent italic">
+          « La meilleure technologie n'est pas la plus sophistiquée,
+          c'est celle qui correspond exactement au contexte réel de la personne qu'on essaie de servir. »
+        </p>
+        <cite class="mt-1 block font-mono text-[11px] font-semibold not-italic tracking-[0.06em] text-bone/35">
+          — Nlend Max
+        </cite>
+      </blockquote>
+    </div>
+
+    <div class="flex flex-col gap-2.5">
+      <!-- La source est en 1:2 ; sans `anchor="top"` le recadrage 4/5 coupe la tête. -->
+      <app-media class="aspect-4/5 w-full" anchor="top" [src]="portrait.src" [alt]="portrait.alt" />
+    </div>
+  </div>
+</section>

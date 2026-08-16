@@ -1,0 +1,73 @@
+<section
+  appSectionSpy="hero"
+  class="relative flex h-screen flex-col overflow-hidden border-b border-bone/10 px-6 pb-3 wide:px-16 wide:pt-5 wide:pb-10"
+>
+  <!-- Gradient diagonal de fond -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 z-0"
+    style="background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(212,168,83,0.07) 0%, transparent 70%), linear-gradient(135deg, rgba(242,241,237,0.03) 0%, transparent 50%, rgba(212,168,83,0.04) 100%)"
+  ></div>
+
+  <!-- Grain SVG overlay -->
+  <div
+    aria-hidden="true"
+    class="hero-grain pointer-events-none absolute inset-0 z-0 opacity-[0.18]"
+  ></div>
+
+  <!-- Main content — centré verticalement, prend l'espace disponible -->
+  <div class="relative z-10 flex flex-1 items-center">
+    <div class="flex w-full flex-col gap-10 wide:flex-row wide:items-end wide:justify-between wide:gap-16">
+
+      <!-- Colonne gauche : nom + tagline + CTA -->
+      <div class="flex flex-col gap-7 wide:max-w-[72ch]">
+        <h1 class="m-0 font-display font-extrabold leading-[0.88] tracking-[-0.03em]
+                   text-[clamp(44px,13vw,120px)]
+                   wide:text-[clamp(80px,10vw,160px)]">
+          <span class="block text-bone">NLEND</span>
+          <span class="block text-accent">MAX</span>
+        </h1>
+
+        <p class="m-0 max-w-[48ch] font-sans text-[16px] font-medium leading-[1.6] text-bone/70
+                  wide:max-w-[64ch] wide:text-[18px]">
+          Je conçois et développe des produits numériques qui répondent à des problèmes concrets,
+          en combinant software engineering, intelligence artificielle et entrepreneuriat.
+          Je cherche à créer des solutions utiles, accessibles et adaptées aux réalités locales.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="#projets"
+            class="inline-flex items-center rounded-[2px] bg-accent px-5 py-3 font-sans text-[12px] font-bold leading-none tracking-[0.08em] text-ink uppercase no-underline transition-colors duration-200 hover:bg-accent-bright"
+          >
+            Voir mes projets
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center rounded-[2px] border border-bone/25 px-5 py-3 font-sans text-[12px] font-bold leading-none tracking-[0.08em] text-bone/75 uppercase no-underline transition-colors duration-200 hover:border-bone/60 hover:text-bone"
+          >
+            Me contacter
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne droite : citation -->
+      <div class="flex flex-col gap-2 wide:items-end wide:text-right wide:max-w-[20ch]">
+        <p class="m-0 font-serif text-[21px] leading-[1.55] text-accent italic">
+          « Parler ne coûte rien. Montre-moi le code. »
+        </p>
+        <span class="font-mono text-[11px] font-semibold tracking-[0.06em] text-bone/35">— Linus Torvalds</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator — collé en bas -->
+  <div class="relative z-10 flex items-center justify-end">
+    <p class="m-0 flex items-center gap-2 font-sans text-[11px] font-semibold leading-none tracking-[0.1em] text-bone/40 uppercase">
+      Scroll
+      <lucide-icon name="ArrowDown" [size]="12" class="inline-block animate-caret" aria-hidden="true"></lucide-icon>
+    </p>
+  </div>
+</section>

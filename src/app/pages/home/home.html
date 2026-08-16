@@ -1,0 +1,34 @@
+<!-- Ambient wash that cross-fades to the accent of whichever section is in view. -->
+<div
+  aria-hidden="true"
+  class="pointer-events-none fixed inset-0 z-0 transition-[background] duration-[800ms] ease-out"
+  [style.background]="tracker.tint()"
+></div>
+
+<div class="relative z-10 box-border">
+  <app-hero />
+
+  <app-about />
+
+  <section appSectionSpy="projets" class="section-shell">
+    <div class="flex flex-col gap-5">
+      <h2 class="section-title m-0 mb-2">02 — Projets</h2>
+      <p class="m-0 max-w-[46ch] font-sans text-base leading-[1.6] font-medium text-bone/60">
+        Quatre produits construits et déployés. Chacun part d'un vrai problème, pas d'une idée abstraite.
+      </p>
+      <blockquote class="m-0 mt-2 border-l-2 border-accent/40 pl-4">
+        <p class="m-0 font-serif text-[17px] leading-[1.55] text-accent italic">
+          « La phrase la plus dangereuse de la langue est : 'On a toujours fait comme ça.' »
+        </p>
+        <cite class="mt-1 block font-mono text-[11px] font-semibold not-italic tracking-[0.06em] text-bone/35">
+          — Grace Hopper
+        </cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <app-projects-grid></app-projects-grid>
+  <app-stack-section />
+  <app-contact-section />
+  <app-site-footer />
+</div>

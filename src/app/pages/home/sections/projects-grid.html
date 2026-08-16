@@ -1,0 +1,61 @@
+<div class="grid grid-cols-1 gap-px border-b border-bone/10 bg-bone/10 sm:grid-cols-2">
+  @for (project of projects; track project.slug) {
+    <a
+      [routerLink]="['/projets', project.slug]"
+      class="group relative flex min-h-[280px] flex-col justify-between overflow-hidden bg-ink p-7 no-underline transition-colors duration-300 wide:min-h-[320px] wide:p-10"
+      [style.--project-accent]="project.accent"
+    >
+      <!-- Tint wash on hover -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        [style.background]="project.tint"
+      ></div>
+
+      <!-- Top row : label + live badge -->
+      <div class="relative z-10 flex items-start justify-between">
+        <span
+          class="font-mono text-[11px] font-bold leading-none tracking-[0.1em] uppercase"
+          [style.color]="project.accent"
+        >
+          {{ project.label }}
+        </span>
+      </div>
+
+      <!-- Middle : title + one-liner -->
+      <div class="relative z-10 flex flex-col gap-3">
+        <h3
+          class="m-0 font-display text-[clamp(28px,3.5vw,42px)] font-bold leading-none tracking-[-0.01em] text-bone transition-colors duration-300"
+          [style.color]="''"
+        >
+          {{ project.title }}
+        </h3>
+        <p class="m-0 max-w-[38ch] font-sans text-[14px] leading-[1.55] text-bone/55">
+          {{ project.oneLiner }}
+        </p>
+      </div>
+
+      <!-- Bottom row : role + arrow -->
+      <div class="relative z-10 flex items-end justify-between">
+        <div class="flex flex-col gap-1.5">
+          <span
+            class="font-sans text-[12px] font-semibold leading-none tracking-[0.04em] uppercase"
+            [style.color]="project.accent"
+          >
+            {{ project.role }}
+          </span>
+          @if (project.team) {
+            <span class="font-mono text-[10px] leading-none text-bone/30">{{ project.team }}</span>
+          }
+          @if (project.status) {
+            <span class="font-mono text-[10px] leading-none text-bone/30">{{ project.status }}</span>
+          }
+        </div>
+        <lucide-icon name="ArrowRight" [size]="16"
+          class="transition-transform duration-300 group-hover:translate-x-1"
+          [style.color]="project.accent"
+        ></lucide-icon>
+      </div>
+    </a>
+  }
+</div>

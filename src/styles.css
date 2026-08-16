@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Design tokens — mirrors the palette/typography of the Portfolio prototype.
+   --------------------------------------------------------------------------- */
+/*
+ * `static` emits every variable below even when no utility references it.
+ * Required because some of these are consumed only through `[style.…]`
+ * bindings in TypeScript, which Tailwind cannot see — without it they would
+ * be tree-shaken out and the binding would resolve to nothing.
+ */
+@theme static {
+  /* Surfaces & text */
+  --color-ink: #0b0c0e;
+  --color-bone: #f2f1ed;
+  --color-mint: #f5e6c8;
+
+  /* Site-wide accent: links, selection, focus ring, primary buttons.
+     Deliberately not any project's colour, so an accent never reads as a
+     project reference. */
+  --color-accent: #d4a853;
+  --color-accent-bright: #e8c278;
+
+  /* Project accents — one per project, mirrored by the section rail. */
+  --color-campus: #ff9800;
+  --color-campus-bright: #ff9f43;
+  --color-agriguard: #8bc34a;
+  --color-agriguard-bright: #b8e086;
+  /* Taken verbatim from N.O.A.H's own tailwind.config: hsl(156.5 60.5% 14.9%).
+     Unlike campus and agriguard, this accent is a *surface* colour — 1.6:1 on
+     --color-ink — so it can't carry type. `-fg` is the same hue and saturation
+     lifted to a readable lightness and is what every visible usage points at;
+     `--color-noah` itself stays the recorded identity, and is the value the
+     wash and terminal tokens below are cut from. */
+  --color-noah: #0f3d2b; /* L 14.9% — fills and washes only */
+  --color-noah-fg: #3d9966; /* vert principal du case study — 9:1 sur --color-ink */
+  --color-noah-bright: #5ab87f; /* hover for -fg */
+
+  /* Flowdar */
+  --color-flowdar: #2257B3;        /* bleu principal Flowdar */
+  --color-flowdar-bright: #4a7fd4;
+  --color-flowdar-wash: rgba(34, 87, 179, 0.07);
+
+  /* Ambient wash painted behind the page while a project section is in view.
+     Deeper and far more transparent than the accent itself. */
+  --color-campus-wash: rgba(255, 152, 0, 0.07);
+  --color-agriguard-wash: rgba(53, 122, 54, 0.14);
+  --color-noah-wash: rgba(15, 61, 43, 0.28); /* base verbatim, like campus */
+
+  /* Terminal block backgrounds — one per project that uses one, each biased
+     towards its own accent so the monospace text doesn't sit on a clashing hue. */
+  --color-terminal: #0e1610; /* AgriGuard — green bias */
+  --color-terminal-noah: #071c14; /* N.O.A.H — base at L 7% */
+
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'DM Serif Display', serif;
+  --font-mono: ui-monospace, Menlo, monospace;
+
+  /* The prototype switches layout at 880px; `wide:` is that breakpoint. */
+  --breakpoint-wide: 880px;
+
+  --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
+  --animate-caret: caret 1.4s step-end infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@layer base {
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+
+  a:hover {
+    color: var(--color-accent-bright);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Shared shell for every home-page section: rhythm + hairline separator. */
+@utility section-shell {
+  box-sizing: border-box;
+  padding: 56px 24px 64px;
+  border-bottom: 1px solid --alpha(var(--color-bone) / 10%);
+
+  @media (width >= 880px) {
+    padding: 90px 64px;
+  }
+}
+
+@utility section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(32px, 4.4vw, 56px);
+  line-height: 1;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+/* Grain overlay for hero section */
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* Diagonal hatch used for the not-yet-supplied imagery placeholders. */
+@utility hatch {
+  background: repeating-linear-gradient(
+    135deg,
+    --alpha(var(--color-bone) / 5%) 0 10px,
+    --alpha(var(--color-bone) / 2%) 10px 20px
+  );
+}

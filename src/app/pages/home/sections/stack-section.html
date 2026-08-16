@@ -1,0 +1,23 @@
+<section appSectionSpy="stack" class="section-shell">
+  <h2 class="section-title m-0 mb-2">03 — Compétences</h2>
+  <p class="m-0 mb-9 max-w-[46ch] font-sans text-base leading-[1.6] font-medium text-bone/60">
+    Les outils que j'utilise au quotidien, classés par domaine.
+  </p>
+
+  <div class="grid grid-cols-2 gap-8 wide:grid-cols-3">
+    @for (group of groups; track group.label) {
+      <div class="border-t border-accent/40 pt-3.5">
+        <h3
+          class="m-0 mb-3.5 font-sans text-[11px] leading-none font-bold tracking-[0.08em] text-accent uppercase"
+        >
+          {{ group.label }}
+        </h3>
+        <ul class="m-0 flex list-none flex-col gap-2 p-0">
+          @for (item of group.items; track item) {
+            <li class="font-mono text-[14px] leading-[1.5] font-medium text-bone/75">{{ item }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</section>

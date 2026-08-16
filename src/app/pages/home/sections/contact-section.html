@@ -1,0 +1,111 @@
+<section appSectionSpy="contact" class="box-border px-6 pt-14 pb-[90px] wide:px-16 wide:py-[90px]">
+  <div class="grid grid-cols-1 gap-7 wide:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] wide:gap-9">
+    <div>
+      <h2 class="section-title m-0 mb-5">04 — Contact</h2>
+
+      <p class="m-0 mb-5 max-w-[44ch] font-sans text-[17px] leading-[1.6] text-bone/70">
+        Un projet, une question, une collaboration ? Écris-moi.
+      </p>
+
+      <p class="m-0 mb-1.5 font-sans text-[15px] leading-[1.6] font-semibold">
+        <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+      </p>
+      <p class="m-0 mb-[18px] font-mono text-[12px] leading-[1.6] text-bone/40">
+        <a [href]="'tel:' + contact.phone">{{ contact.phone }}</a> · {{ contact.city }}
+      </p>
+
+      <div class="flex flex-wrap gap-3.5">
+        <a
+          [href]="contact.linkedin"
+          target="_blank"
+          rel="noopener"
+          class="rounded-[2px] border border-bone/20 px-3 py-2 font-sans text-[11px] leading-none font-semibold tracking-[0.05em] text-bone/70 uppercase no-underline hover:border-accent hover:text-accent"
+        >
+          LinkedIn
+        </a>
+        <a
+          [href]="contact.github"
+          target="_blank"
+          rel="noopener"
+          class="rounded-[2px] border border-bone/20 px-3 py-2 font-sans text-[11px] leading-none font-semibold tracking-[0.05em] text-bone/70 uppercase no-underline hover:border-accent hover:text-accent"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div>
+      @if (sent()) {
+        <p role="status" class="m-0 font-sans text-base leading-[1.6] font-semibold text-accent">
+          Message envoyé — je reviens vers toi vite.
+        </p>
+      } @else {
+        <form class="flex flex-col gap-3.5" (submit)="$event.preventDefault(); submit()">
+
+          <!-- Honeypot anti-robot : invisible à l'écran, jamais rempli par un humain -->
+          <div class="absolute left-[-5000px] overflow-hidden" aria-hidden="true">
+            <label for="contact-website">Ne pas remplir</label>
+            <input
+              id="contact-website"
+              name="website"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+              [value]="website()"
+              (input)="setWebsite($event)"
+            />
+          </div>
+
+          <label class="sr-only" for="contact-name">Nom</label>
+          <input
+            id="contact-name"
+            name="name"
+            autocomplete="name"
+            placeholder="Nom"
+            [value]="name()"
+            (input)="setName($event)"
+            class="border-b border-bone/25 bg-transparent py-2.5 font-sans text-[15px] leading-[1.4] font-medium text-bone outline-none placeholder:text-bone/40"
+          />
+
+          <label class="sr-only" for="contact-email">Email</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="Email"
+            [value]="email()"
+            (input)="setEmail($event)"
+            class="border-b border-bone/25 bg-transparent py-2.5 font-sans text-[15px] leading-[1.4] font-medium text-bone outline-none placeholder:text-bone/40"
+          />
+
+          <label class="sr-only" for="contact-message">Message</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows="4"
+            placeholder="Message"
+            [value]="message()"
+            (input)="setMessage($event)"
+            class="resize-none border-b border-bone/25 bg-transparent py-2.5 font-sans text-[15px] leading-[1.4] font-medium text-bone outline-none placeholder:text-bone/40"
+          ></textarea>
+
+          <button
+            type="submit"
+            [disabled]="!canSubmit()"
+            class="mt-1.5 cursor-pointer self-start rounded-[2px] border-none bg-accent px-[22px] py-3.5 font-sans text-[12px] leading-none font-bold tracking-[0.08em] text-ink uppercase disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {{ status() === 'sending' ? 'Envoi…' : 'Envoyer' }}
+          </button>
+
+          @if (status() === 'error') {
+            <p role="alert" class="m-0 font-sans text-[13px] leading-[1.5] text-red-400">
+              Une erreur est survenue — réessaie ou écris-moi directement à
+              <a [href]="'mailto:' + contact.email" class="underline">{{ contact.email }}</a>.
+            </p>
+          }
+        </form>
+      }
+    </div>
+  </div>
+</section>
