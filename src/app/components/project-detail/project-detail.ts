@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { TagList } from '../../shared/tag-list';
 import { Media } from '../../shared/media';
-import { findProject } from '../../core/portfolio-data';
+import { findProject } from '../../data/projects';
 
 @Component({
   selector: 'app-project-detail',

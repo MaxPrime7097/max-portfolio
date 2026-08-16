@@ -7,8 +7,8 @@ import {
   signal,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { SectionTracker } from '../core/section-tracker';
-import { CONTACT } from '../core/portfolio-data';
+import { SectionTracker } from '../../core/section-tracker';
+import { CONTACT } from '../../data/projects';
 
 /**
  * Navbar fixe en haut de page.

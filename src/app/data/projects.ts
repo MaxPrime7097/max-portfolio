@@ -514,68 +514,6 @@ export function findProject(slug: string): Project | undefined {
   return PROJECTS.find((p) => p.slug === slug);
 }
 
-export interface BlogPost {
-  readonly slug: string;
-  readonly title: string;
-  /** Omis tant que la date de publication n'est pas arrêtée — l'affichage la saute. */
-  readonly date?: string;
-  readonly excerpt: string;
-  /** Un paragraphe par entrée. */
-  readonly body: readonly string[];
-}
-
-export const BLOG_POSTS: readonly BlogPost[] = [
-  {
-    slug: 'sms-plutot-qu-une-belle-application',
-    title: "Pourquoi j'ai choisi le SMS plutôt qu'une belle application",
-    excerpt:
-      "Avec AgriGuard, l'interface la plus impressionnante était la mauvaise réponse. Partir de la contrainte réelle plutôt que de ce que je préférais construire.",
-    body: [
-      "Quand on construit un produit tech, le réflexe naturel est de viser l'interface la plus impressionnante possible. Avec AgriGuard, j'ai dû faire l'inverse.",
-      "Le problème de départ était simple à énoncer et difficile à résoudre : comment transmettre une alerte climatique précise à un petit agriculteur camerounais, à temps pour qu'il agisse ? La réponse évidente — une application mobile élégante — s'est effondrée dès la première question de terrain : est-ce que cet agriculteur possède un smartphone, et une connexion stable ? Dans la majorité des cas, non.",
-      "Le SMS n'est pas une solution de repli. C'est la solution qui part réellement de l'utilisateur plutôt que de ce que je préférais construire. Ça a changé toute mon approche produit : penser d'abord à la contrainte, puis à la technologie — jamais l'inverse. Le pipeline derrière (5 zones agroclimatiques, un modèle prédictif interne, des règles agronomiques qui priment toujours sur l'IA pour les alertes critiques) peut être aussi sophistiqué qu'on veut ; l'interface avec l'agriculteur, elle, doit rester la plus simple possible.",
-      "C'est une leçon que je réapplique maintenant à chaque projet : la meilleure technologie n'est pas la plus sophistiquée, c'est celle qui correspond exactement au contexte réel de la personne qu'on essaie de servir.",
-    ],
-  },
-  {
-    slug: 'fonctionnalite-et-valeur',
-    title: "Ce que CampusSphere m'a appris sur la différence entre fonctionnalité et valeur",
-    excerpt:
-      "Reconnaître que le feed — la fonctionnalité dans laquelle j'avais le plus investi — était probablement la moins utile du produit.",
-    body: [
-      "CampusSphere a été mon premier vrai passage de « je code des applications » à « je construis un produit utilisé par de vraies personnes ». Et cette transition a été plus inconfortable que je ne l'aurais cru.",
-      "On peut techniquement faire fonctionner une plateforme — features live, backend stable, design soigné — sans que ça garantisse quoi que ce soit sur son adoption. J'ai dû reconnaître, à un moment, que le feed — une fonctionnalité sur laquelle j'avais pourtant beaucoup investi — était probablement la partie la moins utile du produit. Ce n'est jamais confortable de remettre en question ce qu'on a construit de ses mains.",
-      "Mais c'est exactement la question qui compte : est-ce que cette fonctionnalité apporte une valeur réelle, ou est-ce qu'elle existe simplement parce qu'elle était possible à construire ? Fonctionnalité et valeur ne sont pas la même chose. Depuis, chaque nouvelle feature — sur CampusSphere comme sur mes autres projets — passe par ce filtre avant d'être développée.",
-    ],
-  },
-  {
-    slug: 'complexifier-mon-backend-pour-rien',
-    title: "Pourquoi j'ai failli complexifier mon backend pour rien",
-    excerpt:
-      "Les microservices étaient séduisants sur le papier. Je n'avais ni la charge, ni l'équipe, ni le besoin.",
-    body: [
-      "Il y a eu un moment où j'ai sérieusement envisagé de faire évoluer un de mes backends Flask vers une architecture en microservices. Sur le papier, c'était séduisant : plus scalable, plus « propre », plus proche de ce que font les grosses boîtes tech.",
-      "Sauf que je n'avais ni la charge utilisateur, ni l'équipe, ni même le besoin réel qui justifie cette complexité. J'étais en train de choisir une architecture parce qu'elle était impressionnante, pas parce qu'elle répondait à un problème que j'avais réellement.",
-      "Ce que j'en retiens : un bon ingénieur ne choisit pas la technologie la plus sophistiquée qu'il connaît, il choisit le niveau de complexité que son problème justifie réellement. Depuis, avant d'ajouter une couche d'architecture, je me pose une seule question — est-ce que je résous un problème que j'ai, ou un problème que je pourrais avoir un jour ? Si c'est la deuxième réponse, j'attends.",
-    ],
-  },
-  {
-    slug: 'bundle-2-36-mo',
-    title: "Comment j'ai fait passer un bundle de 2,36 Mo à quelque chose de viable",
-    excerpt:
-      "manualChunks, lazy-loading d'une vingtaine de modales, et un wrapper à ouverture contrôlée. Rien de spectaculaire, et c'est le sujet.",
-    body: [
-      "Sur CampusSphere, à un moment donné, le bundle de production frôlait les 2,36 Mo en un seul fichier monolithique. Le genre de chiffre qui ne pose pas de problème en dev, et qui devient un vrai frein en prod dès que la connexion de l'utilisateur n'est pas excellente — ce qui est souvent le cas ici.",
-      "La correction n'a pas été une réécriture magique, mais trois décisions ciblées : une configuration manualChunks pour découper le bundle de façon cohérente plutôt qu'au hasard, le lazy-loading d'une vingtaine de composants modaux qui n'ont pas besoin d'être chargés au premier rendu, et un pattern de wrapper à ouverture contrôlée pour éviter de charger du code inutilement au montage des composants.",
-      "Rien de spectaculaire individuellement. Mais c'est exactement le genre de travail qu'on repousse parce qu'il ne produit aucune nouvelle fonctionnalité visible — jusqu'à ce que la performance devienne elle-même une fonctionnalité invisible mais critique, surtout pour des utilisateurs qui n'ont pas toujours une connexion fiable.",
-    ],
-  },
-];
-
-export function findPost(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.slug === slug);
-}
-
 export interface SectionMeta {
   readonly id: string;
   readonly label: string;

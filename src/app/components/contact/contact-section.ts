@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { SectionSpyDirective } from '../../../core/section-spy';
-import { ContactService } from '../../../core/contact.service';
-import { CONTACT } from '../../../core/portfolio-data';
+import { SectionSpyDirective } from '../../core/section-spy';
+import { ContactService } from '../../core/contact.service';
+import { CONTACT } from '../../data/projects';
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 

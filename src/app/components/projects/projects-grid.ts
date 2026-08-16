@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
-import { PROJECTS } from '../../../core/portfolio-data';
+import { PROJECTS } from '../../data/projects';
 
 @Component({
   selector: 'app-projects-grid',

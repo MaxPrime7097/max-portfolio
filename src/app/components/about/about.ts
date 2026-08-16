@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SectionSpyDirective } from '../../../core/section-spy';
-import { Media } from '../../../shared/media';
-import { PORTRAIT } from '../../../core/portfolio-data';
+import { SectionSpyDirective } from '../../core/section-spy';
+import { Media } from '../../shared/media';
+import { PORTRAIT } from '../../data/projects';
 
 @Component({
   selector: 'app-about',

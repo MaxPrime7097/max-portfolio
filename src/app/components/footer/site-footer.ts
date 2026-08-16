@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CONTACT } from '../core/portfolio-data';
+import { CONTACT } from '../../data/projects';
 
 @Component({
   selector: 'app-site-footer',

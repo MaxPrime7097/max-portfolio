@@ -1,5 +1,5 @@
 import { computed, DestroyRef, Injectable, inject, signal } from '@angular/core';
-import { SECTIONS } from './portfolio-data';
+import { SECTIONS } from '../data/projects';
 import { prefersReducedMotion } from './motion';
 
 /**

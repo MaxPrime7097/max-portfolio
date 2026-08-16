@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SectionTracker } from '../core/section-tracker';
-import { SECTIONS } from '../core/portfolio-data';
+import { SECTIONS } from '../data/projects';
 
 /**
  * Fixed right-hand table of contents. Hidden below the `wide` breakpoint,
