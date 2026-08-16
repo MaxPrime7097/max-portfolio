@@ -217,15 +217,7 @@ Dans le dashboard Vercel, aller dans **Settings → Environment Variables** et a
 | `SENDER_EMAIL` | Adresse expéditrice vérifiée dans Brevo |
 | `OWNER_EMAIL` | Adresse qui reçoit les messages du formulaire |
 
-Les noms dans `vercel.json` (`@brevo_api_key`, etc.) référencent des secrets Vercel. Pour les créer :
-
-```bash
-vercel secrets add brevo_api_key "your_key_here"
-vercel secrets add sender_email "sender@email.com"
-vercel secrets add owner_email "owner@email.com"
-```
-
-Ou simplement ajouter les variables directement dans le dashboard — les deux méthodes fonctionnent.
+Les variables sont lues directement depuis l'environnement Vercel. Ajoute-les dans **Settings → Environment Variables** du projet.
 
 ### Première mise en ligne
 

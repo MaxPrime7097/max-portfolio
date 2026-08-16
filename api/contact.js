@@ -85,7 +85,7 @@ export default async function handler(req, res) {
             <tr>
               <td style="padding:8px 0;color:#666">Email</td>
               <td style="padding:8px 0">
-                <a href="mailto:${esc(email)}" style="color:#0070f3">${esc(email)}</a>
+                <a href="mailto:${esc(email)}" style="color:#d4a853">${esc(email)}</a>
               </td>
             </tr>
           </table>
@@ -108,12 +108,12 @@ export default async function handler(req, res) {
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px">
           <h2 style="margin-top:0">Bonjour ${esc(name)},</h2>
           <p>
-            Merci pour ton message — je l'ai bien reçu et je reviens vers toi sous 48 h.
+            Merci pour ton message, je l'ai bien reçu et je reviens vers toi sous 48 h.
           </p>
           <p>En attendant, tu peux jeter un œil à mes projets :</p>
           <ul>
-            <li><a href="https://campussphere.app" style="color:#0070f3">CampusSphere</a></li>
-            <li><a href="https://agriguard.org" style="color:#0070f3">AgriGuard</a></li>
+            <li><a href="https://campussphere.app" style="color:#d4a853">CampusSphere</a></li>
+            <li><a href="https://agriguard.org" style="color:#d4a853">AgriGuard</a></li>
           </ul>
           <p style="margin-top:24px">À très vite,<br><strong>Nlend Max</strong></p>
           <hr style="border:none;border-top:1px solid #eee;margin-top:32px">

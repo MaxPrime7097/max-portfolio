@@ -28,10 +28,5 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     }
-  ],
-  "env": {
-    "BREVO_API_KEY": "@brevo_api_key",
-    "SENDER_EMAIL": "@sender_email",
-    "OWNER_EMAIL": "@owner_email"
-  }
+  ]
 }
