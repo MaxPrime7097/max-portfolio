@@ -1,109 +1,267 @@
 # Portfolio — Nlend Max
 
-Angular 22 (standalone, zoneless) + Tailwind CSS v4 implementation of the
-`Portfolio.dc.html` design prototype.
+Portfolio personnel construit avec Angular 22 (standalone, zoneless) et Tailwind CSS v4. Quatre case studies complets, formulaire de contact via Brevo, déployé sur Vercel.
+
+---
+
+## Stack
+
+| Couche | Technologie |
+|---|---|
+| Framework | Angular 22 — standalone components, signals, `@let`, no NgModules |
+| Styles | Tailwind CSS v4 — `@theme static`, utilitaires custom |
+| Icônes | lucide-angular — tree-shaken via `LUCIDE_ICONS` provider |
+| Email | Brevo API — serverless function `api/contact.js` |
+| Déploiement | Vercel — SPA rewrite + env secrets |
+| Typo | Syne (display) · DM Sans (body) · DM Serif Display (serif) · system mono |
+
+---
+
+## Démarrage local
 
 ```bash
-npm start        # dev server on http://localhost:4200
-npm run build    # production bundle in dist/Portfolio
-npm test         # Vitest
+# Installer les dépendances
+npm install
+
+# Lancer le dev server (port 4200)
+npm start
+
+# Lancer avec les fonctions serverless Vercel (formulaire de contact)
+npx vercel dev
+
+# Build de production
+npm run build
+
+# Lancer les tests
+npm test
 ```
 
-## Routes
+### Variables d'environnement
 
-| Path              | Page                                       |
-| ----------------- | ------------------------------------------ |
-| `/`               | Long-form home page with the section rail  |
-| `/projets/:slug`  | Project detail (`campussphere`, `agriguard`, `noah`) |
-| `/blog`           | Blog index                                 |
-| `/blog/:slug`     | Blog post                                  |
+Créer un fichier `.env.local` à la racine (déjà dans `.gitignore`) :
 
-The prototype used hash routing (`#/projets/…`); this uses real paths, so any
-static host needs an SPA fallback rewriting unknown paths to `index.html`
-(`vercel.json` rewrites, Netlify `_redirects`, `try_files` on nginx). Without it
-deep links 404 in production — the dev server handles this for you.
+```env
+BREVO_API_KEY=your_brevo_api_key_here
+SENDER_EMAIL=your_sender@email.com
+OWNER_EMAIL=your_inbox@email.com
+```
 
-## Structure
+Ces variables sont injectées automatiquement par `vercel dev` en local et par les secrets Vercel en production (voir section Déploiement).
+
+---
+
+## Structure du projet
 
 ```
 src/app/
-  core/
-    portfolio-data.ts   All copy, projects, posts, stack, timeline, contact
-    section-tracker.ts  IntersectionObserver scroll-spy + ambient tint
-    section-spy.ts      Directive registering a <section> with the tracker
-  shared/               section-rail, tag-list, post-list, media-placeholder, site-footer
-  pages/
-    home/               home.ts + sections/ (hero, 3 projects, about, parcours, blog, stack, contact)
-    project-detail/     lazy
-    blog-list/          lazy
-    blog-post/          lazy
+├── components/
+│   ├── about/              # Section "À propos"
+│   ├── contact/            # Formulaire de contact avec honeypot
+│   ├── footer/             # Footer avec liens sociaux et citation
+│   ├── header/             # Navbar fixe, scroll-spy, menu mobile
+│   ├── hero/               # Hero plein écran avec grain + gradient
+│   ├── project-detail/     # Page case study (lazy-loaded)
+│   ├── projects/           # Grille 2×2 des projets
+│   └── skills/             # Compétences, soft skills, intérêts
+├── core/
+│   ├── contact.service.ts  # HttpClient wrapper vers /api/contact
+│   ├── motion.ts           # prefers-reduced-motion helper
+│   ├── section-spy.ts      # Directive IntersectionObserver
+│   └── section-tracker.ts  # Scroll-spy + ambient tint signal
+├── data/
+│   └── projects.ts         # Source unique de vérité — tout le contenu
+├── shared/
+│   ├── back-to-top.ts      # Bouton retour en haut
+│   ├── media.ts            # <img> avec fallback hatch
+│   ├── section-rail.ts     # Rail latéral de navigation
+│   └── tag-list.ts         # Badges de stack
+├── app.ts                  # Composant racine — absorbe la home
+├── app.html                # Template racine (home + router-outlet conditionnel)
+├── app.routes.ts           # Route unique : /projets/:slug
+└── app.config.ts           # Providers : router, HttpClient, LucideIcons
+
+api/
+└── contact.js              # Serverless function Vercel — envoie via Brevo
+
+public/
+├── docs/
+│   └── cv-nlend-max.pdf
+└── images/
+    ├── max-portrait.webp
+    └── projets/
+        ├── campussphere-1.webp
+        ├── agriguard-1.webp
+        ├── noah-1.webp
+        └── flowdar-1.webp
 ```
 
-**All content lives in `core/portfolio-data.ts`** — copy edits should never
-require touching a template.
+---
+
+## Routes
+
+| Path | Composant | Chargement |
+|---|---|---|
+| `/` | `App` (home inline) | Eager |
+| `/projets/:slug` | `ProjectDetail` | Lazy |
+
+Les slugs valides : `campussphere`, `agriguard`, `noah`, `flowdar`.
+
+Le SPA rewrite dans `vercel.json` redirige toute URL inconnue vers `index.html` — les deep links fonctionnent en production. En local sans `vercel dev`, utiliser `npm start` (le dev server Angular gère le fallback).
+
+---
+
+## Contenu
+
+**Tout le contenu est dans `src/app/data/projects.ts`** — éditer du texte ne nécessite jamais de toucher un template.
+
+Exports principaux :
+
+| Export | Rôle |
+|---|---|
+| `PROJECTS` | Les 4 projets avec toutes leurs sections (why, idea, features, building, learning, next) |
+| `STACK_GROUPS` | Groupes de compétences affichés dans la section Compétences |
+| `SECTIONS` | Ordre et IDs des sections pour le scroll-spy |
+| `CONTACT` | Email, téléphone, réseaux, CV URL |
+| `PORTRAIT` | Image de la section À propos |
+| `findProject(slug)` | Lookup projet par slug (utilisé dans le resolver de route) |
+
+### Ajouter un projet
+
+1. Ajouter une entrée dans `PROJECTS` dans `data/projects.ts`
+2. Ajouter la couleur accent dans `src/styles.css` sous `@theme static`
+3. Déposer le screenshot dans `public/images/projets/`
+
+La grille s'adapte automatiquement — 2 projets = 1×2, 4 = 2×2, 6 = 2×3.
+
+---
 
 ## Design system
 
-Tokens are declared in `src/styles.css` under `@theme`, so they are available as
-normal Tailwind utilities:
+Les tokens sont déclarés dans `src/styles.css` sous `@theme static`. Le mot-clé `static` force Tailwind à émettre chaque variable même si aucune classe utilitaire ne la référence — nécessaire car `PROJECTS[].accent` et `PROJECTS[].tint` sont des strings `var(--color-…)` consommées via des bindings `[style.background]` que Tailwind ne peut pas analyser statiquement.
 
-- Surfaces — `ink` `bone` `mint`, plus `terminal` / `terminal-noah` for the two
-  monospace log blocks (each biased towards its project's accent)
-- Site accent — `accent` / `accent-bright` (links, selection, focus ring, primary
-  buttons). Deliberately not any project's colour.
-- Project accents — `campus` `agriguard` `noah`, each with a `-bright` hover
-  variant and a `-wash` used for the ambient section tint
+**Règle d'or : `styles.css` est le seul endroit où une valeur de couleur est écrite.**
 
-`@theme` is declared **`static`**, so every variable is emitted even when no
-utility references it. That matters because `PROJECTS[].accent` / `.tint` and
-`SECTIONS[].color` / `.tint` in `core/portfolio-data.ts` hold
-`var(--color-…)` strings consumed through `[style.…]` bindings — Tailwind
-cannot see those, and without `static` it would tree-shake the variables away.
-**`styles.css` is the only place a colour value is written**; recolouring a
-project means editing one line there.
-- Fonts — `font-display` (Syne), `font-sans` (DM Sans), `font-serif` (DM Serif Display), `font-mono`
-- Breakpoint — `wide:` = 880px, the single breakpoint the prototype switched on
-- Animations — `animate-pulse-dot`, `animate-caret`
-- Custom utilities — `section-shell`, `section-title`, `eyebrow`, `hatch`
+### Couleurs
 
-The prototype branched on a JS `isMobile` flag at 880px; that is a CSS media
-query here (`wide:`), so there is no resize listener and no layout flash.
+| Token | Usage |
+|---|---|
+| `--color-ink` | Background global `#0b0c0e` |
+| `--color-bone` | Texte principal `#f2f1ed` |
+| `--color-accent` | Liens, boutons, focus ring `#d4a853` |
+| `--color-accent-bright` | Hover accent `#e8c278` |
+| `--color-campus` | Orange CampusSphere `#ff9800` |
+| `--color-agriguard` | Vert AgriGuard `#8bc34a` |
+| `--color-noah-fg` | Vert N.O.A.H `#3d9966` |
+| `--color-flowdar` | Bleu Flowdar `#2257B3` |
+
+Chaque projet a aussi un `-wash` (fond ambiant transparent) et un `-bright` (hover).
+
+### Typographie
+
+| Classe | Police |
+|---|---|
+| `font-display` | Syne — titres, eyebrows |
+| `font-sans` | DM Sans — body, UI |
+| `font-serif` | DM Serif Display — citations |
+| `font-mono` | system monospace — labels, dates |
+
+### Breakpoint
+
+Un seul breakpoint : `wide:` = 880px. Correspond au passage desktop/mobile du prototype.
+
+### Utilitaires custom
+
+| Classe | Description |
+|---|---|
+| `section-shell` | Padding + border-bottom pour chaque section home |
+| `section-title` | `clamp(32px, 4.4vw, 56px)` Syne 800 |
+| `eyebrow` | 11px mono 700 tracking-[0.1em] |
+| `hatch` | Background rayé pour les placeholders d'images |
+
+---
+
+## Formulaire de contact
+
+Le formulaire utilise une architecture en deux parties :
+
+**Frontend** (`components/contact/contact-section.ts`)
+- Signals Angular pour l'état du formulaire
+- Validation email côté client
+- Champ honeypot caché (`website`) — si rempli, la requête est rejetée côté serveur
+- États : `idle` → `sending` → `ok` / `error`
+
+**Backend** (`api/contact.js`)
+- Serverless function Vercel (Node.js)
+- Validation du honeypot
+- Envoi via l'API Brevo (ex-Sendinblue) en mode transactionnel
+- Répond `{ ok: true }` ou un code d'erreur HTTP
+
+---
+
+## Déploiement Vercel
+
+### Configuration automatique (`vercel.json`)
+
+- **Build** : `npm run build` → output dans `dist/Portfolio/browser`
+- **SPA rewrite** : toute requête non-API → `index.html`
+- **Cache** : assets hashés mis en cache 1 an (immutable)
+- **Headers de sécurité** : `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`
+
+### Variables d'environnement en production
+
+Dans le dashboard Vercel, aller dans **Settings → Environment Variables** et ajouter :
+
+| Nom | Valeur |
+|---|---|
+| `BREVO_API_KEY` | Clé API Brevo (Transactional → API Keys) |
+| `SENDER_EMAIL` | Adresse expéditrice vérifiée dans Brevo |
+| `OWNER_EMAIL` | Adresse qui reçoit les messages du formulaire |
+
+Les noms dans `vercel.json` (`@brevo_api_key`, etc.) référencent des secrets Vercel. Pour les créer :
+
+```bash
+vercel secrets add brevo_api_key "your_key_here"
+vercel secrets add sender_email "sender@email.com"
+vercel secrets add owner_email "owner@email.com"
+```
+
+Ou simplement ajouter les variables directement dans le dashboard — les deux méthodes fonctionnent.
+
+### Première mise en ligne
+
+```bash
+# Installer Vercel CLI
+npm i -g vercel
+
+# Déployer (suivre les instructions interactives)
+vercel
+
+# Déploiement de production
+vercel --prod
+```
+
+---
 
 ## Assets
 
-Everything static lives in `public/`, copied verbatim to the build root — so
-`public/images/x.jpg` is served at `/images/x.jpg`. The paths are already wired;
-dropping the files in is all that's left:
+Déposer les fichiers dans `public/` — ils sont copiés verbatim à la racine du build.
 
-```
-public/
-  images/
-    max-portrait.jpg        4/5, ~800×1000 — PORTRAIT in core/portfolio-data.ts
-    projets/
-      campussphere-1..5.png 16/10 — PROJECTS[].shots
-      agriguard-1..5.png
-      noah-1..5.png
-  docs/
-    cv-nlend-max.pdf        CONTACT.cvUrl, linked from the footer
-```
+| Fichier | Format recommandé | Dimensions |
+|---|---|---|
+| `images/max-portrait.webp` | WebP | ~800×1000 (ratio 4/5) |
+| `images/projets/*.webp` | WebP | ~1280×720 (ratio 16/9) |
+| `docs/cv-nlend-max.pdf` | PDF | — |
 
-`<app-media>` (`shared/media.ts`) renders an `<img>` and falls back to the
-design's hatch box on `error`, labelled with the alt text — so a file that isn't
-there yet degrades to a described placeholder instead of a broken-image icon.
-That also means **a typo'd filename fails silently**; check the slot renders an
-image once you've dropped one in.
+`<app-media>` affiche un placeholder hachuré si le fichier est absent — pas d'image cassée visible.
 
-On the detail page the first shot runs full width and the remaining four sit in
-a 2×2 grid.
+---
 
-## Still TODO (carried over from the design)
+## Scripts npm
 
-- **Contact form has no backend.** `ContactSection.submit()` only flips a local
-  signal — nothing is sent. Wire it to a real endpoint.
-- **Contact details are placeholders** — see `CONTACT` in `core/portfolio-data.ts`:
-  email, GitHub URL, LinkedIn URL.
-- **Blog posts are placeholders** — `BLOG_POSTS` holds two TODO stubs.
-- **Shot alt text is provisional** — written from each product's real features,
-  not from the actual captures. Realign once the images exist.
-- **Hero status row** is an intentional empty spacer (`hero.html`); the design
-  left it blank.
+| Commande | Action |
+|---|---|
+| `npm start` | Dev server sur `http://localhost:4200` |
+| `npm run build` | Bundle de production dans `dist/Portfolio/browser` |
+| `npm run watch` | Build en mode watch (développement) |
+| `npm test` | Tests unitaires avec Vitest |
+| `npx vercel dev` | Dev server avec fonctions serverless (formulaire actif) |

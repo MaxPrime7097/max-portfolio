@@ -46,3 +46,6 @@ Thumbs.db
 # Variables d'environnement locales (jamais commiter)
 .env.local
 .env*.local
+
+# Vercel CLI
+.vercel/

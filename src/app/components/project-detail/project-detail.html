@@ -280,5 +280,45 @@
       </div>
     </section>
 
+    <!-- PREV / NEXT NAV -->
+    @if (prevProject() || nextProject()) {
+      <div class="border-t border-bone/10"></div>
+      <nav aria-label="Navigation entre projets" class="grid grid-cols-1 sm:grid-cols-2">
+
+        <!-- Précédent -->
+        @if (prevProject()) {
+          <a [routerLink]="['/projets', prevProject()!.slug]"
+             class="group flex flex-col gap-3 border-r-0 border-bone/10 px-6 py-10 no-underline transition-colors hover:bg-white/[0.02] wide:px-16 sm:border-r">
+            <span class="inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/35 uppercase">
+              <lucide-icon name="ArrowLeft" [size]="11"></lucide-icon>
+              Projet précédent
+            </span>
+            <span class="font-display text-[clamp(20px,2.5vw,28px)] font-bold leading-[1.1] text-bone/60 transition-colors group-hover:text-bone">
+              {{ prevProject()!.title }}
+            </span>
+            <span class="font-sans text-[13px] leading-[1.5] text-bone/35">{{ prevProject()!.oneLiner }}</span>
+          </a>
+        } @else {
+          <div></div>
+        }
+
+        <!-- Suivant -->
+        @if (nextProject()) {
+          <a [routerLink]="['/projets', nextProject()!.slug]"
+             class="group flex flex-col gap-3 border-t border-bone/10 px-6 py-10 no-underline transition-colors hover:bg-white/[0.02] sm:border-t-0 sm:items-end sm:text-right wide:px-16">
+            <span class="inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/35 uppercase">
+              Projet suivant
+              <lucide-icon name="ArrowRight" [size]="11"></lucide-icon>
+            </span>
+            <span class="font-display text-[clamp(20px,2.5vw,28px)] font-bold leading-[1.1] text-bone/60 transition-colors group-hover:text-bone">
+              {{ nextProject()!.title }}
+            </span>
+            <span class="font-sans text-[13px] leading-[1.5] text-bone/35">{{ nextProject()!.oneLiner }}</span>
+          </a>
+        }
+
+      </nav>
+    }
+
   }
 </div>

@@ -389,7 +389,7 @@ export const PROJECTS: readonly Project[] = [
       { src: '/images/projets/noah-1.webp', alt: "Landing page N.O.A.H" },
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: "https://github.com/MaxPrime7097/N.O.A.H.git",
     building: {
       eyebrow: '04 — Building It',
       title: 'Les décisions techniques qui ont compté.',
@@ -487,7 +487,7 @@ export const PROJECTS: readonly Project[] = [
       { src: '/images/projets/flowdar-1.webp', alt: 'Landing page Flowdar' },
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: "https://github.com/MaxPrime7097/Flowdar.git",
     building: {
       eyebrow: '04 — Building It',
       title: 'Les décisions techniques qui ont compté.',
