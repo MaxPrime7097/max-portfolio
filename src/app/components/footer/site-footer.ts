@@ -49,16 +49,16 @@ import { CONTACT } from '../../data/projects';
         <p class="m-0 font-serif text-[14px] leading-[1.5] italic text-accent">
           « La meilleure façon de prédire l'avenir, c'est de l'inventer. »
         </p>
-        <cite class="mt-0.5 block font-mono text-[10px] font-semibold not-italic tracking-[0.06em] text-bone/35">
+        <cite class="mt-0.5 block font-mono text-[10px] font-semibold not-italic tracking-[0.06em] text-bone/50">
           — Alan Kay
         </cite>
       </blockquote>
 
       <div class="flex flex-wrap justify-between gap-2">
-        <span class="font-mono text-[11px] leading-[1.5] font-medium text-bone/30">
+        <span class="font-mono text-[11px] leading-[1.5] font-medium text-bone/50">
           © {{ year }} Nlend Max
         </span>
-        <span class="font-mono text-[11px] leading-[1.5] font-medium text-bone/30">
+        <span class="font-mono text-[11px] leading-[1.5] font-medium text-bone/50">
           Fait avec Angular
         </span>
       </div>

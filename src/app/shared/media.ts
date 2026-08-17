@@ -24,7 +24,8 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
       <img
         [src]="src()"
         [alt]="alt()"
-        loading="lazy"
+        [loading]="priority() ? 'eager' : 'lazy'"
+        [attr.fetchpriority]="priority() ? 'high' : null"
         decoding="async"
         class="size-full object-cover"
         [class.object-top]="anchor() === 'top'"
@@ -36,11 +37,9 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
 export class Media {
   readonly src = input.required<string>();
   readonly alt = input.required<string>();
-  /**
-   * Où ancrer le recadrage quand la source est plus haute que son créneau.
-   * `top` sur un portrait, sinon le centrage par défaut coupe la tête.
-   */
   readonly anchor = input<'center' | 'top'>('center');
+  /** Marquer `true` pour les images above-the-fold (portrait, hero shot). */
+  readonly priority = input<boolean>(false);
 
   protected readonly missing = signal(false);
 }

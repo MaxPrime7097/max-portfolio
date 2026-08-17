@@ -11,12 +11,12 @@
   } @else {
 
     <!-- HERO -->
-    <section class="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 pb-16 pt-20 wide:px-16">
+    <section aria-label="Présentation du projet" class="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 pb-16 pt-20 wide:px-16">
       <div aria-hidden="true" class="fixed inset-0 z-0 pointer-events-none transition-[background] duration-700" [style.background]="p.tint"></div>
       <div aria-hidden="true" class="hero-grain absolute inset-0 z-0 opacity-[0.12] pointer-events-none"></div>
 
       <!-- Back link — top left -->
-      <a routerLink="/" class="absolute top-20 left-6 wide:left-16 z-10 inline-flex items-center gap-1.5 font-mono text-[11px] text-bone/30 uppercase no-underline hover:text-bone transition-colors tracking-[0.08em]">
+      <a routerLink="/" class="absolute top-20 left-6 wide:left-16 z-10 inline-flex items-center gap-1.5 font-mono text-[11px] text-bone/50 uppercase no-underline hover:text-bone transition-colors tracking-[0.08em]">
         <lucide-icon name="ArrowLeft" [size]="12"></lucide-icon>
         Accueil
       </a>
@@ -58,18 +58,18 @@
 
         <div class="mt-14 flex flex-wrap gap-x-12 gap-y-5 border-t border-bone/10 pt-8">
           <div>
-            <p class="eyebrow m-0 mb-1.5 text-bone/40 uppercase tracking-[0.1em]">Rôle</p>
+            <p class="eyebrow m-0 mb-1.5 text-bone/50 uppercase tracking-[0.1em]">Rôle</p>
             <p class="m-0 font-display text-[15px] font-semibold text-bone">{{ p.role }}</p>
           </div>
           @if (p.team) {
             <div>
-              <p class="eyebrow m-0 mb-1.5 text-bone/40 uppercase tracking-[0.1em]">Équipe</p>
+              <p class="eyebrow m-0 mb-1.5 text-bone/50 uppercase tracking-[0.1em]">Équipe</p>
               <p class="m-0 font-display text-[15px] font-semibold text-bone">{{ p.team }}</p>
             </div>
           }
           @if (p.stack.length) {
             <div>
-              <p class="eyebrow m-0 mb-1.5 text-bone/40 uppercase tracking-[0.1em]">Stack</p>
+              <p class="eyebrow m-0 mb-1.5 text-bone/50 uppercase tracking-[0.1em]">Stack</p>
               <p class="m-0 font-display text-[15px] font-semibold text-bone">
                 {{ p.stack.slice(0, 3).join(' · ') }}{{ p.stack.length > 3 ? ' · …' : '' }}
               </p>
@@ -77,7 +77,7 @@
           }
           @if (p.status) {
             <div>
-              <p class="eyebrow m-0 mb-1.5 text-bone/40 uppercase tracking-[0.1em]">Statut</p>
+              <p class="eyebrow m-0 mb-1.5 text-bone/50 uppercase tracking-[0.1em]">Statut</p>
               <p class="m-0 font-display text-[15px] font-semibold text-bone">{{ p.status }}</p>
             </div>
           }
@@ -130,12 +130,12 @@
 
     <!-- 03 — CE QU'ON A CONSTRUIT (screenshot + features + stats) -->
     <section class="mx-auto max-w-[1100px] px-6 py-[90px] wide:px-16">
-      <p class="eyebrow m-0 mb-5 uppercase tracking-[0.1em]" [style.color]="p.accent">03 — Ce qu'on a construit</p>
+      <p class="eyebrow m-0 mb-5 uppercase tracking-[0.1em]" [style.color]="p.accent">03 — What we built</p>
       <h2 class="m-0 font-display font-bold leading-[1.05] tracking-[-0.02em] text-bone text-[clamp(28px,3vw,40px)]">Ce qu'on a construit.</h2>
 
       @if (p.shots.length) {
         <div class="mt-14">
-          <app-media class="aspect-video w-full rounded-[2px] border border-bone/10" [src]="p.shots[0].src" [alt]="p.shots[0].alt" />
+          <app-media class="aspect-video w-full rounded-[2px] border border-bone/10" [priority]="true" [src]="p.shots[0].src" [alt]="p.shots[0].alt" />
           <p class="mt-3 m-0 font-sans text-[13px] text-bone/40 leading-[1.5]">{{ p.shots[0].alt }}</p>
         </div>
       }
@@ -273,7 +273,7 @@
             </a>
           }
         </div>
-        <a routerLink="/" class="inline-flex items-center gap-1.5 font-sans text-[12px] text-bone/40 uppercase no-underline hover:text-bone transition-colors tracking-[0.06em]">
+        <a routerLink="/" class="inline-flex items-center gap-1.5 font-sans text-[12px] text-bone/50 uppercase no-underline hover:text-bone transition-colors tracking-[0.06em]">
           <lucide-icon name="ArrowLeft" [size]="12"></lucide-icon>
           Retour à l'accueil
         </a>
@@ -289,14 +289,14 @@
         @if (prevProject()) {
           <a [routerLink]="['/projets', prevProject()!.slug]"
              class="group flex flex-col gap-3 border-r-0 border-bone/10 px-6 py-10 no-underline transition-colors hover:bg-white/[0.02] wide:px-16 sm:border-r">
-            <span class="inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/35 uppercase">
+            <span class="inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/50 uppercase">
               <lucide-icon name="ArrowLeft" [size]="11"></lucide-icon>
               Projet précédent
             </span>
             <span class="font-display text-[clamp(20px,2.5vw,28px)] font-bold leading-[1.1] text-bone/60 transition-colors group-hover:text-bone">
               {{ prevProject()!.title }}
             </span>
-            <span class="font-sans text-[13px] leading-[1.5] text-bone/35">{{ prevProject()!.oneLiner }}</span>
+            <span class="font-sans text-[13px] leading-[1.5] text-bone/50">{{ prevProject()!.oneLiner }}</span>
           </a>
         } @else {
           <div></div>
@@ -306,14 +306,14 @@
         @if (nextProject()) {
           <a [routerLink]="['/projets', nextProject()!.slug]"
              class="group flex flex-col gap-3 border-t border-bone/10 px-6 py-10 no-underline transition-colors hover:bg-white/[0.02] sm:border-t-0 sm:items-end sm:text-right wide:px-16">
-            <span class="inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/35 uppercase">
+            <span class="inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/50 uppercase">
               Projet suivant
               <lucide-icon name="ArrowRight" [size]="11"></lucide-icon>
             </span>
             <span class="font-display text-[clamp(20px,2.5vw,28px)] font-bold leading-[1.1] text-bone/60 transition-colors group-hover:text-bone">
               {{ nextProject()!.title }}
             </span>
-            <span class="font-sans text-[13px] leading-[1.5] text-bone/35">{{ nextProject()!.oneLiner }}</span>
+            <span class="font-sans text-[13px] leading-[1.5] text-bone/50">{{ nextProject()!.oneLiner }}</span>
           </a>
         }
 

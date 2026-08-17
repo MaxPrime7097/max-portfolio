@@ -29,7 +29,7 @@
           « La meilleure technologie n'est pas la plus sophistiquée,
           c'est celle qui correspond exactement au contexte réel de la personne qu'on essaie de servir. »
         </p>
-        <cite class="mt-1 block font-mono text-[11px] font-semibold not-italic tracking-[0.06em] text-bone/35">
+        <cite class="mt-1 block font-mono text-[11px] font-semibold not-italic tracking-[0.06em] text-bone/50">
           — Nlend Max
         </cite>
       </blockquote>
@@ -37,7 +37,7 @@
 
     <div class="flex flex-col gap-2.5">
       <!-- La source est en 1:2 ; sans `anchor="top"` le recadrage 4/5 coupe la tête. -->
-      <app-media class="aspect-4/5 w-full" anchor="top" [src]="portrait.src" [alt]="portrait.alt" />
+      <app-media class="aspect-4/5 w-full" anchor="top" [priority]="true" [src]="portrait.src" [alt]="portrait.alt" />
     </div>
   </div>
 </section>

@@ -41,10 +41,31 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload Syne 800 — utilisé pour le titre héro, critique pour LCP -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&amp;family=DM+Sans:wght@400;500;700&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap"
       rel="stylesheet"
     />
+
+    <!-- JSON-LD Structured Data pour SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nlend Max",
+      "url": "https://nlend-max.vercel.app/",
+      "jobTitle": "Développeur Web FullStack & Product Builder",
+      "sameAs": [
+        "https://github.com/MaxPrime7097",
+        "https://www.linkedin.com/in/nlend-max-6a4792330"
+      ]
+    }
+    </script>
   </head>
   <body>
     <app-root></app-root>

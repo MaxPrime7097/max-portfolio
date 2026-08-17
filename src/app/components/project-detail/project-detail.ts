@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { TagList } from '../../shared/tag-list';
 import { Media } from '../../shared/media';
 import { findProject, PROJECTS } from '../../data/projects';
+import { input } from '@angular/core';
 
 @Component({
   selector: 'app-project-detail',
@@ -33,6 +35,21 @@ export class ProjectDetail {
     const idx = PROJECTS.findIndex((p) => p.slug === this.slug());
     return idx < PROJECTS.length - 1 ? PROJECTS[idx + 1] : null;
   });
+
+  constructor() {
+    const meta = inject(Meta);
+    effect(() => {
+      const p = this.project();
+      if (p) {
+        meta.updateTag({ name: 'description', content: p.oneLiner });
+        meta.updateTag({ property: 'og:description', content: p.oneLiner });
+        meta.updateTag({ property: 'og:title', content: `${p.title} — Nlend Max` });
+        if (p.shots[0]) {
+          meta.updateTag({ property: 'og:image', content: `https://nlend-max.vercel.app${p.shots[0].src}` });
+        }
+      }
+    });
+  }
 
   protected layoutFor(index: number): string {
     return ProjectDetail.LAYOUT[index % ProjectDetail.LAYOUT.length];
