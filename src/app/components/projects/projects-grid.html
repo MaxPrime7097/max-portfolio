@@ -16,7 +16,7 @@
       <div class="relative z-10 flex items-start justify-between">
         <span
           class="font-mono text-[11px] font-bold leading-none tracking-[0.1em] uppercase"
-          [style.color]="project.accent"
+          [style.color]="project.accentText ?? project.accent"
         >
           {{ project.label }}
         </span>
@@ -40,15 +40,15 @@
         <div class="flex flex-col gap-1.5">
           <span
             class="font-sans text-[12px] font-semibold leading-none tracking-[0.04em] uppercase"
-            [style.color]="project.accent"
+            [style.color]="project.accentText ?? project.accent"
           >
             {{ project.role }}
           </span>
           @if (project.team) {
-            <span class="font-mono text-[10px] leading-none text-bone/30">{{ project.team }}</span>
+            <span class="font-mono text-[10px] leading-none text-bone/50">{{ project.team }}</span>
           }
           @if (project.status) {
-            <span class="font-mono text-[10px] leading-none text-bone/30">{{ project.status }}</span>
+            <span class="font-mono text-[10px] leading-none text-bone/50">{{ project.status }}</span>
           }
         </div>
         <lucide-icon name="ArrowRight" [size]="16"

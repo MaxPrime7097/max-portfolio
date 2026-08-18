@@ -22,7 +22,7 @@
       </a>
 
       <div class="relative z-10 max-w-[1100px] mx-auto w-full">
-        <p class="eyebrow m-0 mb-6 uppercase tracking-[0.1em]" [style.color]="p.accent">{{ p.label }} · Case Study</p>
+        <p class="eyebrow m-0 mb-6 uppercase tracking-[0.1em]" [style.color]="p.accentText ?? p.accent">{{ p.label }} · Case Study</p>
         <h1 class="m-0 font-display font-extrabold text-[clamp(40px,6vw,80px)] leading-[0.92] tracking-[-0.03em] text-bone max-w-[900px]">{{ p.title }}</h1>
         <p class="m-0 mt-8 font-sans text-[18px] text-bone/60 max-w-[560px] leading-[1.6]">{{ p.oneLiner }}</p>
 

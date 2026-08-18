@@ -37,7 +37,6 @@ import { CONTACT } from '../../data/projects';
       <a
         routerLink="/"
         class="flex items-baseline gap-[5px] no-underline"
-        aria-label="Accueil — Nlend Max"
       >
         <span class="font-display text-[17px] font-extrabold leading-none tracking-[-0.01em] text-bone">
           NLEND

@@ -51,6 +51,11 @@ export interface Project {
    * truth for the actual value, so a recolour never means editing this file.
    */
   readonly accent: string;
+  /**
+   * Optional lighter variant of accent safe for text on dark backgrounds (≥ 4.5:1 contrast).
+   * Falls back to `accent` when not provided.
+   */
+  readonly accentText?: string;
   /** Ambient wash painted behind the page while the section is in view. */
   readonly tint: string;
   readonly oneLiner: string;
@@ -90,7 +95,7 @@ export const PROJECTS: readonly Project[] = [
     slug: 'campussphere',
     label: '02A',
     title: 'CampusSphere',
-    role: 'CEO & Frontend Developer',
+    role: 'Founder & Frontend Developer',
     accent: 'var(--color-campus)',
     tint: 'var(--color-campus-wash)',
     oneLiner:
@@ -416,6 +421,7 @@ export const PROJECTS: readonly Project[] = [
     title: 'Flowdar',
     role: 'Frontend Developer',
     accent: 'var(--color-flowdar)',
+    accentText: 'var(--color-flowdar-text)', /* texte sur fond sombre — ratio ≥ 4.5:1 */
     tint: 'var(--color-flowdar-wash)',
     oneLiner:
       'La plateforme citoyenne qui détecte les inondations à Douala en temps réel et guide vers un itinéraire sûr.',

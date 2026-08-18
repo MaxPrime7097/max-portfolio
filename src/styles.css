@@ -37,8 +37,9 @@
   --color-noah-bright: #5ab87f; /* hover for -fg */
 
   /* Flowdar */
-  --color-flowdar: #2257B3;        /* bleu principal Flowdar */
+  --color-flowdar: #2257B3;        /* bleu principal Flowdar — fills/borders only */
   --color-flowdar-bright: #4a7fd4;
+  --color-flowdar-text: #6699e0;   /* texte sur fond sombre (#0b0c0e) — ratio ≥ 4.5:1 */
   --color-flowdar-wash: rgba(34, 87, 179, 0.07);
 
   /* Ambient wash painted behind the page while a project section is in view.
