@@ -536,38 +536,79 @@ export const SECTIONS: readonly SectionMeta[] = [
   { id: 'contact',  label: '04 · Contact',       color: 'var(--color-bone)', tint: 'transparent' },
 ];
 
+export interface StackItem {
+  readonly name: string;
+  /** Path relative to public root, e.g. /images/skills/react_light.svg */
+  readonly logo?: string;
+}
+
 export interface StackGroup {
   readonly label: string;
-  readonly items: readonly string[];
+  readonly items: readonly StackItem[];
 }
 
 export const STACK_GROUPS: readonly StackGroup[] = [
   {
     label: 'Frontend',
-    items: ['React', 'Angular', 'TypeScript', 'Vite', 'Tailwind CSS', 'Shadcn/UI'],
+    items: [
+      { name: 'Angular',     logo: '/images/skills/angular.svg' },
+      { name: 'React',       logo: '/images/skills/react_light.svg' },
+      { name: 'TypeScript',  logo: '/images/skills/typescript.svg' },
+      { name: 'Vite',        logo: '/images/skills/vite.svg' },
+      { name: 'Tailwind CSS',logo: '/images/skills/tailwindcss.svg' },
+      { name: 'Shadcn/UI',   logo: '/images/skills/shadcn-ui.svg' },
+    ],
   },
-  { label: 'Backend', items: ['Django 5.2 + DRF', 'FastAPI', 'Python'] },
   {
-    label: 'Data & infra',
-    items: ['Supabase', 'PostgreSQL', 'AWS', 'GCP', 'Vercel', 'Render', 'Git'],
+    label: 'Backend',
+    items: [
+      { name: 'Django 5.2 + DRF', logo: '/images/skills/django.svg' },
+      { name: 'FastAPI',          logo: '/images/skills/fastapi.svg' },
+      { name: 'Python',           logo: '/images/skills/python.svg' },
+    ],
+  },
+  {
+    label: 'Data & Infra',
+    items: [
+      { name: 'Supabase',    logo: '/images/skills/supabase.svg' },
+      { name: 'PostgreSQL',  logo: '/images/skills/postgresql.svg' },
+      { name: 'AWS',         logo: '/images/skills/aws_light.svg' },
+      { name: 'GCP',         logo: '/images/skills/google-cloud.svg' },
+      { name: 'Vercel',      logo: '/images/skills/vercel.svg' },
+      { name: 'Render',      logo: '/images/skills/render_white.svg' },
+      { name: 'Git',         logo: '/images/skills/git.svg' },
+    ],
+  },
+  {
+    label: 'ML & Data',
+    items: [
+      { name: 'Scikit-learn' },
+      { name: 'TensorFlow' },
+      { name: 'Random Forest' },
+      { name: 'Pandas' },
+      { name: 'NumPy' },
+      { name: 'Jupyter' },
+    ],
   },
   {
     label: 'Soft Skills',
     items: [
-      'Adaptability',
-      'Leadership',
-      'Communication',
-      'Strategic Thinking',
-      'Self-learning',
-      'Teamwork',
-      'Creativity',
+      { name: 'Adaptabilité' },
+      { name: 'Leadership' },
+      { name: 'Communication' },
+      { name: 'Pensée stratégique' },
+      { name: 'Autodidacte' },
+      { name: 'Travail en équipe' },
+      { name: 'Créativité' },
     ],
   },
   {
-    label: 'Interests',
-    items: ['Tech & Startups','AI and Machine Learning', 'Music & Creative Expression', 'Personal Development', 'Gaming', 'Reading'],
+    label: 'Langues',
+    items: [
+      { name: 'Français — courant' },
+      { name: 'Anglais — courant' },
+    ],
   },
-  { label: 'Langues', items: ['Français — courant', 'Anglais — courant'] },
 ];
 
 export interface TimelineEntry {
@@ -647,5 +688,5 @@ export const CONTACT = {
 /** Portrait de la section « À propos ». */
 export const PORTRAIT: Media = {
   src: '/images/max-portrait.webp',
-  alt: "Nlend Max",
+  alt: 'Portrait de Nlend Max',
 };

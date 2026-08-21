@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SectionSpyDirective } from '../../core/section-spy';
-import { STACK_GROUPS } from '../../data/projects';
+import { STACK_GROUPS, StackItem } from '../../data/projects';
 
 @Component({
   selector: 'app-stack-section',
@@ -11,4 +11,8 @@ import { STACK_GROUPS } from '../../data/projects';
 })
 export class StackSection {
   protected readonly groups = STACK_GROUPS;
+
+  protected trackItem(_: number, item: StackItem): string {
+    return item.name;
+  }
 }

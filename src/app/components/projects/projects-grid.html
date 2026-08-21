@@ -5,6 +5,20 @@
       class="group relative flex min-h-[280px] flex-col justify-between overflow-hidden bg-ink p-7 no-underline transition-colors duration-300 wide:min-h-[320px] wide:p-10"
       [style.--project-accent]="project.accent"
     >
+      <!-- Screenshot background — subtle at rest, more visible on hover -->
+      @if (project.shots.length) {
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] transition-opacity duration-500 group-hover:opacity-[0.22]"
+          [style.backgroundImage]="'url(' + project.shots[0].src + ')'"
+        ></div>
+        <!-- Blur overlay so text stays legible -->
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 bg-ink/40 backdrop-blur-[2px] transition-opacity duration-500 group-hover:bg-ink/20"
+        ></div>
+      }
+
       <!-- Tint wash on hover -->
       <div
         aria-hidden="true"
