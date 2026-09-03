@@ -53,6 +53,22 @@ export class App {
     const sub = router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.url.set(e.urlAfterRedirects);
+
+        const url = e.urlAfterRedirects;
+
+        // Navigation vers une page détail → scroll to top
+        if (url.startsWith('/projets/')) {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          return;
+        }
+
+        // Retour vers la home avec state.scrollTo (depuis goBack())
+        const scrollTarget = (history.state as { scrollTo?: string })?.scrollTo;
+        if (scrollTarget && url === '/') {
+          setTimeout(() => {
+            document.getElementById(scrollTarget)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 80);
+        }
       }
     });
 

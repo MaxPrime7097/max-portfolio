@@ -159,6 +159,27 @@
   background-size: 200px 200px;
 }
 
+/* ---------------------------------------------------------------------------
+   Scroll-reveal — état initial et transition.
+   prefers-reduced-motion : la transition est annulée par le reset global
+   présent dans @layer base ci-dessus, donc aucun traitement spécial requis.
+   --------------------------------------------------------------------------- */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Diagonal hatch used for the not-yet-supplied imagery placeholders. */
 @utility hatch {
   background: repeating-linear-gradient(

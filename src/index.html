@@ -12,6 +12,15 @@
     <meta name="theme-color" content="#0B0C0E" />
     <meta name="color-scheme" content="dark" />
     <meta name="robots" content="index, follow" />
+    <!--
+      ╔══════════════════════════════════════════════════════════════╗
+      ║  CHANGEMENT DE DOMAINE : remplace "nlend-max.vercel.app"     ║
+      ║  par ton nouveau domaine dans TOUT ce fichier (Ctrl+H).      ║
+      ║  Fais pareil dans :                                           ║
+      ║  - public/sitemap.xml                                         ║
+      ║  - src/environments/environment.ts                            ║
+      ╚══════════════════════════════════════════════════════════════╝
+    -->
     <link rel="canonical" href="https://nlend-max.vercel.app/" />
 
     <!-- Open Graph — aperçu LinkedIn, WhatsApp, Facebook -->
@@ -22,7 +31,7 @@
       property="og:description"
       content="Nlend Max — Développeur Web FullStack et Product Builder"
     />
-    <meta property="og:image" content="https://nlend-max.vercel.app/images/max-portrait.webp" />
+    <meta property="og:image" content="https://nlend-max.vercel.app/images/og-cover.webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="fr_FR" />
@@ -35,12 +44,9 @@
       name="twitter:description"
       content="Nlend Max — Développeur Web FullStack et Product Builder"
     />
-    <meta name="twitter:image" content="https://nlend-max.vercel.app/images/max-portrait.webp" />
+    <meta name="twitter:image" content="https://nlend-max.vercel.app/images/og-cover.webp" />
 
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
-    <!-- Preload Lottie animation uniquement sur desktop — évite cascade réseau -->
-    <link rel="preload" href="/animation/pY6O0kjK5B.lottie" as="fetch" crossorigin media="(min-width: 1280px)" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,10 +68,50 @@
       "@type": "Person",
       "name": "Nlend Max",
       "url": "https://nlend-max.vercel.app/",
+      "image": "https://nlend-max.vercel.app/images/max-portrait.webp",
       "jobTitle": "Développeur Web FullStack & Product Builder",
+      "description": "Étudiant en génie informatique à l'IUC Douala, développeur FullStack et product builder. Combine software engineering, intelligence artificielle et entrepreneuriat pour créer des solutions adaptées aux réalités africaines.",
+      "knowsAbout": ["Angular", "React", "TypeScript", "Python", "Django", "FastAPI", "Machine Learning", "Supabase", "PostgreSQL", "AWS", "GCP"],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Institut Universitaire de la Côte (IUC)",
+        "address": { "@type": "PostalAddress", "addressLocality": "Douala", "addressCountry": "CM" }
+      },
+      "address": { "@type": "PostalAddress", "addressLocality": "Douala", "addressCountry": "CM" },
       "sameAs": [
         "https://github.com/MaxPrime7097",
         "https://www.linkedin.com/in/nlend-max-6a4792330"
+      ],
+      "hasCreativeWork": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "CampusSphere",
+          "description": "Réseau social académique qui connecte les étudiants africains.",
+          "url": "https://nlend-max.vercel.app/projets/campussphere",
+          "applicationCategory": "SocialNetworkingApplication"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "AgriGuard",
+          "description": "Système d'alertes climatiques SMS pour les petits agriculteurs.",
+          "url": "https://nlend-max.vercel.app/projets/agriguard",
+          "applicationCategory": "BusinessApplication",
+          "award": "Lauréat Hult Prize OnCampus IUC 2026"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "N.O.A.H",
+          "description": "Moteur d'observation déterministe qui détecte le drift comportemental.",
+          "url": "https://nlend-max.vercel.app/projets/noah",
+          "applicationCategory": "HealthApplication"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Flowdar",
+          "description": "Plateforme citoyenne de détection des inondations à Douala.",
+          "url": "https://nlend-max.vercel.app/projets/flowdar",
+          "applicationCategory": "UtilitiesApplication"
+        }
       ]
     }
     </script>

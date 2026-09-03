@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SectionSpyDirective } from '../../core/section-spy';
+import { ScrollRevealDirective } from '../../core/scroll-reveal';
 import { Media } from '../../shared/media';
 import { PORTRAIT } from '../../data/projects';
 
@@ -7,7 +8,7 @@ import { PORTRAIT } from '../../data/projects';
   selector: 'app-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'block' },
-  imports: [SectionSpyDirective, Media],
+  imports: [SectionSpyDirective, ScrollRevealDirective, Media],
   templateUrl: './about.html',
 })
 export class About {

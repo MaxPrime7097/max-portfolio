@@ -16,10 +16,10 @@
       <div aria-hidden="true" class="hero-grain absolute inset-0 z-0 opacity-[0.12] pointer-events-none"></div>
 
       <!-- Back link — top left -->
-      <a routerLink="/" class="absolute top-20 left-6 wide:left-16 z-10 inline-flex items-center gap-1.5 font-mono text-[11px] text-bone/50 uppercase no-underline hover:text-bone transition-colors tracking-[0.08em]">
+      <button type="button" (click)="goBack()" class="absolute top-20 left-6 wide:left-16 z-10 inline-flex items-center gap-1.5 cursor-pointer border-none bg-transparent p-0 font-mono text-[11px] text-bone/50 uppercase no-underline hover:text-bone transition-colors tracking-[0.08em]">
         <lucide-icon name="ArrowLeft" [size]="12"></lucide-icon>
-        Accueil
-      </a>
+        Retour
+      </button>
 
       <div class="relative z-10 max-w-[1100px] mx-auto w-full">
         <p class="eyebrow m-0 mb-6 uppercase tracking-[0.1em]" [style.color]="p.accentText ?? p.accent">{{ p.label }} · Case Study</p>

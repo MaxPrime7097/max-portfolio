@@ -136,7 +136,7 @@ import { CONTACT } from '../../data/projects';
           (click)="closeMenu()"
           class="rounded-[2px] border border-accent/40 px-4 py-2.5 font-sans text-[12px] font-bold leading-none tracking-[0.08em] text-accent uppercase no-underline"
         >
-          Télécharger le CV
+          Télécharger mon CV
         </a>
         <a
           [href]="contact.linkedin"

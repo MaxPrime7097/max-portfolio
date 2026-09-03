@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { SectionSpyDirective } from '../../core/section-spy';
+import { ScrollRevealDirective } from '../../core/scroll-reveal';
 import { ContactService } from '../../core/contact.service';
 import { CONTACT } from '../../data/projects';
 
@@ -11,7 +12,7 @@ type Status = 'idle' | 'sending' | 'ok' | 'error';
   selector: 'app-contact-section',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'block' },
-  imports: [SectionSpyDirective],
+  imports: [SectionSpyDirective, ScrollRevealDirective],
   templateUrl: './contact-section.html',
 })
 export class ContactSection {

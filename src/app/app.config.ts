@@ -9,7 +9,7 @@ import {
   Leaf, CloudRain, LayoutDashboard, MessageCircle, Database, AlertTriangle,
   Rocket, FlaskConical, Microscope, Globe, Handshake, Bell,
   Code2, Layers, Server, Zap, ChevronRight, ArrowRight, ArrowLeft, ArrowDown, ArrowUp,
-  Hexagon, Sparkles, Github,
+  Hexagon, Sparkles, Github, Linkedin, Instagram,
 } from 'lucide-angular';
 
 import { routes } from './app.routes';
@@ -28,13 +28,13 @@ export const appConfig: ApplicationConfig = {
         Leaf, CloudRain, LayoutDashboard, MessageCircle, Database, AlertTriangle,
         Rocket, FlaskConical, Microscope, Globe, Handshake, Bell,
         Code2, Layers, Server, Zap, ChevronRight, ArrowRight, ArrowLeft, ArrowDown, ArrowUp,
-        Hexagon, Sparkles, Github,
+        Hexagon, Sparkles, Github, Linkedin, Instagram,
       }),
     },
     provideRouter(
       routes,
       withComponentInputBinding(),
-      withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }),
+      withInMemoryScrolling({ scrollPositionRestoration: 'disabled', anchorScrolling: 'enabled' }),
     ),
   ],
 };

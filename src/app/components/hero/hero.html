@@ -21,14 +21,14 @@
 
       <!-- Colonne gauche : nom + tagline + CTA -->
       <div class="flex flex-col gap-7 wide:max-w-[72ch]">
-        <h1 class="m-0 font-display font-extrabold leading-[0.88] tracking-[-0.03em]
+        <h1 appReveal class="m-0 font-display font-extrabold leading-[0.88] tracking-[-0.03em]
                    text-[clamp(44px,13vw,120px)]
                    wide:text-[clamp(64px,8vw,120px)]">
           <span class="block text-bone">NLEND</span>
           <span class="block text-accent">MAX</span>
         </h1>
 
-        <p class="m-0 max-w-[48ch] font-sans text-[16px] font-medium leading-[1.6] text-bone/70
+        <p appReveal [revealDelay]="80" class="m-0 max-w-[48ch] font-sans text-[16px] font-medium leading-[1.6] text-bone/70
                   wide:max-w-[64ch] wide:text-[18px]">
           Je conçois et développe des produits numériques qui répondent à des problèmes concrets,
           en combinant software engineering, intelligence artificielle et entrepreneuriat.
@@ -36,15 +36,17 @@
         </p>
 
         <!-- CTA buttons -->
-        <div class="flex flex-wrap gap-3">
+        <div appReveal [revealDelay]="160" class="flex flex-wrap gap-3">
           <a
             href="#projets"
+            (click)="scrollTo($event, 'projets')"
             class="inline-flex items-center rounded-[2px] bg-accent px-5 py-3 font-sans text-[12px] font-bold leading-none tracking-[0.08em] text-ink uppercase no-underline transition-colors duration-200 hover:bg-accent-bright"
           >
             Voir mes projets
           </a>
           <a
             href="#contact"
+            (click)="scrollTo($event, 'contact')"
             class="inline-flex items-center rounded-[2px] border border-bone/25 px-5 py-3 font-sans text-[12px] font-bold leading-none tracking-[0.08em] text-bone/75 uppercase no-underline transition-colors duration-200 hover:border-bone/60 hover:text-bone"
           >
             Me contacter
@@ -52,7 +54,7 @@
         </div>
 
         <!-- Citation -->
-        <div class="flex flex-col gap-1">
+        <div appReveal [revealDelay]="220" class="flex flex-col gap-1">
           <p class="m-0 font-serif text-[18px] leading-[1.55] text-accent italic">
             « Parler ne coûte rien. Montre-moi le code. »
           </p>
