@@ -582,31 +582,30 @@ export const STACK_GROUPS: readonly StackGroup[] = [
   {
     label: 'ML & Data',
     items: [
-      { name: 'Scikit-learn' },
-      { name: 'TensorFlow' },
-      { name: 'Random Forest' },
-      { name: 'Pandas' },
-      { name: 'NumPy' },
-      { name: 'Jupyter' },
+      { name: 'Scikit-learn',  logo: '/images/skills/scikit-learn.svg' },
+      { name: 'TensorFlow',    logo: '/images/skills/tensorflow.svg' },
+      { name: 'Random Forest', logo: '/images/skills/random-forest.png' },
+      { name: 'Pandas',        logo: '/images/skills/pandas.svg' },
+      { name: 'NumPy',         logo: '/images/skills/numpy.svg' },
     ],
   },
   {
     label: 'Soft Skills',
     items: [
-      { name: 'Adaptabilité' },
-      { name: 'Leadership' },
-      { name: 'Communication' },
-      { name: 'Pensée stratégique' },
-      { name: 'Autodidacte' },
-      { name: 'Travail en équipe' },
-      { name: 'Créativité' },
+      { name: 'Adaptabilité',       logo: '/images/skills/adaptability.png' },
+      { name: 'Leadership',         logo: '/images/skills/leadership.png' },
+      { name: 'Communication',      logo: '/images/skills/communication.png' },
+      { name: 'Pensée stratégique', logo: '/images/skills/strategic-thinking.png' },
+      { name: 'Autodidacte',        logo: '/images/skills/self-learning.png' },
+      { name: 'Travail en équipe',  logo: '/images/skills/teamwork.png' },
+      { name: 'Créativité',         logo: '/images/skills/creativity.png' },
     ],
   },
   {
     label: 'Langues',
     items: [
-      { name: 'Français — courant' },
-      { name: 'Anglais — courant' },
+      { name: 'Français — courant', logo: '/images/skills/french.png' },
+      { name: 'Anglais — courant',  logo: '/images/skills/english.png' },
     ],
   },
 ];
@@ -636,7 +635,7 @@ export const TIMELINE: readonly TimelineEntry[] = [
 
   {
     tag: 'Juin - Sep 2026',
-    text: 'Angular Talent Lab — Orange Digital Center Douala, 14 semaines · "Cameroun 2030"',
+    text: 'Angular Talent Lab — Orange Digital Center Douala, 14 semaines',
   },
 ];
 
