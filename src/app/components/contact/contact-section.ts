@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { SectionSpyDirective } from '../../core/section-spy';
 import { ScrollRevealDirective } from '../../core/scroll-reveal';
+import { LucideAngularModule } from 'lucide-angular';
 import { ContactService } from '../../core/contact.service';
 import { CONTACT } from '../../data/projects';
 
@@ -12,7 +13,7 @@ type Status = 'idle' | 'sending' | 'ok' | 'error';
   selector: 'app-contact-section',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'block' },
-  imports: [SectionSpyDirective, ScrollRevealDirective],
+  imports: [SectionSpyDirective, ScrollRevealDirective, LucideAngularModule],
   templateUrl: './contact-section.html',
 })
 export class ContactSection {
@@ -28,6 +29,14 @@ export class ContactSection {
   protected readonly status = signal<Status>('idle');
 
   protected readonly sent = computed(() => this.status() === 'ok');
+
+  protected reset(): void {
+    this.status.set('idle');
+    this.name.set('');
+    this.email.set('');
+    this.message.set('');
+    this.website.set('');
+  }
 
   protected readonly canSubmit = computed(
     () =>

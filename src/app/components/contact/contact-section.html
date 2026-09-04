@@ -43,9 +43,30 @@
 
     <div appReveal [revealDelay]="120">
       @if (sent()) {
-        <p role="status" class="m-0 font-sans text-base leading-[1.6] font-semibold text-accent">
-          Message envoyé — je reviens vers toi vite.
-        </p>
+        <div class="flex flex-col gap-5">
+          <!-- Icône check animée -->
+          <div class="flex size-14 items-center justify-center rounded-[2px] border border-accent/40 bg-accent/10">
+            <lucide-icon name="Check" [size]="24" class="text-accent" aria-hidden="true"></lucide-icon>
+          </div>
+
+          <div>
+            <p role="status" class="m-0 font-display text-[22px] font-bold leading-tight tracking-[-0.01em] text-bone">
+              Message reçu.
+            </p>
+            <p class="m-0 mt-2 font-sans text-[14px] leading-[1.6] text-bone/60">
+              Je reviens vers toi dans les plus brefs délais.<br>
+              En attendant, tu peux aussi me retrouver sur LinkedIn.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            (click)="reset()"
+            class="inline-flex self-start cursor-pointer items-center gap-2 rounded-[2px] border border-bone/20 bg-transparent px-4 py-2.5 font-sans text-[12px] font-semibold leading-none tracking-[0.06em] text-bone/60 uppercase transition-colors duration-200 hover:border-bone/50 hover:text-bone"
+          >
+            Envoyer un autre message
+          </button>
+        </div>
       } @else {
         <form class="flex flex-col gap-3.5" (submit)="$event.preventDefault(); submit()">
 
