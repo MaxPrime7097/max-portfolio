@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { CONTACT } from '../../data/projects';
 
@@ -36,7 +38,7 @@ import { CONTACT } from '../../data/projects';
               NLEND <span class="text-accent">MAX</span>
             </p>
             <p class="mt-1.5 m-0 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/50 uppercase">
-              Développeur FullStack · Product Builder
+              Développeur Web FullStack · Product Builder
             </p>
           </div>
 
@@ -65,10 +67,11 @@ import { CONTACT } from '../../data/projects';
             <ul class="m-0 list-none p-0 flex flex-col gap-2.5 wide:items-end">
               @for (link of navLinks; track link.id) {
                 <li>
-                  <a
-                    [href]="'#' + link.id"
-                    class="font-sans text-[13px] font-semibold leading-none tracking-[0.04em] text-bone/55 uppercase no-underline transition-colors duration-200 hover:text-bone"
-                  >{{ link.label }}</a>
+                  <button
+                    type="button"
+                    (click)="scrollTo(link.id)"
+                    class="cursor-pointer border-none bg-transparent p-0 font-sans text-[13px] font-semibold leading-none tracking-[0.04em] text-bone/55 uppercase no-underline transition-colors duration-200 hover:text-bone"
+                  >{{ link.label }}</button>
                 </li>
               }
             </ul>
@@ -113,6 +116,19 @@ import { CONTACT } from '../../data/projects';
 export class SiteFooter {
   protected readonly contact = CONTACT;
   protected readonly year = new Date().getFullYear();
+  private readonly router = inject(Router);
+  private readonly platformId = inject(PLATFORM_ID);
+
+  protected scrollTo(id: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // On est sur une page détail — retour home avec scroll cible
+      this.router.navigate(['/'], { state: { scrollTo: id } });
+    }
+  }
 
   protected readonly navLinks = [
     { id: 'a-propos',  label: 'À propos' },
