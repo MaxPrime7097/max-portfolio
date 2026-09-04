@@ -7,7 +7,9 @@ import {
   signal,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { LucideAngularModule } from 'lucide-angular';
 import { SectionTracker } from '../../core/section-tracker';
+import { ThemeService } from '../../core/theme.service';
 import { CONTACT } from '../../data/projects';
 
 /**
@@ -22,7 +24,7 @@ import { CONTACT } from '../../data/projects';
 @Component({
   selector: 'app-site-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, LucideAngularModule],
   template: `
     <!-- ── Barre principale ─────────────────────────────────────────────── -->
     <header
@@ -61,6 +63,20 @@ import { CONTACT } from '../../data/projects';
             {{ link.label }}
           </button>
         }
+
+        <!-- Theme toggle -->
+        <button
+          type="button"
+          (click)="themeService.toggle()"
+          [attr.aria-label]="themeService.theme() === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'"
+          class="flex size-7.5 cursor-pointer items-center justify-center rounded-[2px] border border-bone/20 bg-transparent transition-colors duration-200 hover:border-bone/50"
+        >
+          @if (themeService.theme() === 'dark') {
+            <lucide-icon name="Sun" [size]="14" class="text-bone/60" aria-hidden="true"></lucide-icon>
+          } @else {
+            <lucide-icon name="Moon" [size]="14" class="text-bone/60" aria-hidden="true"></lucide-icon>
+          }
+        </button>
 
         <!-- CV — lien direct, pas une section -->
         <a
@@ -130,6 +146,21 @@ import { CONTACT } from '../../data/projects';
 
       <!-- Liens du bas -->
       <div class="mt-auto flex flex-wrap items-center gap-4 border-t border-bone/10 pt-8">
+        <!-- Theme toggle mobile -->
+        <button
+          type="button"
+          (click)="themeService.toggle()"
+          [attr.aria-label]="themeService.theme() === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'"
+          class="flex items-center gap-2 cursor-pointer border-none bg-transparent p-0 font-sans text-[12px] font-semibold leading-none tracking-[0.06em] text-bone/60 uppercase hover:text-bone transition-colors"
+        >
+          @if (themeService.theme() === 'dark') {
+            <lucide-icon name="Sun" [size]="14" aria-hidden="true"></lucide-icon>
+            Mode clair
+          } @else {
+            <lucide-icon name="Moon" [size]="14" aria-hidden="true"></lucide-icon>
+            Mode sombre
+          }
+        </button>
         <a
           [href]="contact.cvUrl"
           download
@@ -164,6 +195,7 @@ export class SiteHeader {
   // SectionTracker est optionnel : présent sur la home, absent sur les autres pages.
   private readonly tracker = inject(SectionTracker, { optional: true });
   private readonly router = inject(Router);
+  protected readonly themeService = inject(ThemeService);
   protected readonly contact = CONTACT;
 
   protected readonly scrolled = signal(false);

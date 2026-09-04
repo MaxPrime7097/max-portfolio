@@ -95,6 +95,30 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* ── Light mode ──────────────────────────────────────────────────────────
+     Activé via la classe `light` sur <html>.
+     Fond crème chaud, quasi-noir chaud, accent ambre inchangé.
+     -------------------------------------------------------------------------- */
+  html.light {
+    --color-ink:         #f5f0e8;
+    --color-bone:        #1a1612;
+    --color-mint:        #e8dfc8;
+    --color-accent:      #b8891e;
+    --color-accent-bright: #d4a853;
+
+    /* Project washes — plus légères sur fond clair */
+    --color-campus-wash:    rgba(255, 152, 0, 0.08);
+    --color-agriguard-wash: rgba(53, 122, 54, 0.10);
+    --color-noah-wash:      rgba(15, 61, 43, 0.08);
+    --color-flowdar-wash:   rgba(34, 87, 179, 0.07);
+  }
+
+  html.light body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
   }
 
   ::selection {
@@ -152,11 +176,85 @@
   letter-spacing: 0.1em;
 }
 
+/* Gradients adaptatifs hero / footer */
+.hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(212,168,83,0.07) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(242,241,237,0.03) 0%, transparent 50%, rgba(212,168,83,0.04) 100%);
+}
+.footer-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 40% 60%, rgba(212,168,83,0.07) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(212,168,83,0.04) 0%, transparent 50%, rgba(242,241,237,0.03) 100%);
+}
+
+/* Light mode — gradients inversés (fond clair) */
+html.light .hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(184,137,30,0.08) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(26,22,18,0.02) 0%, transparent 50%, rgba(184,137,30,0.05) 100%);
+}
+html.light .footer-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 40% 60%, rgba(184,137,30,0.08) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(184,137,30,0.05) 0%, transparent 50%, rgba(26,22,18,0.02) 100%);
+}
+
+/* Project hero overlay adaptatif */
+.project-hero-overlay {
+  background: linear-gradient(to top, #050505 35%, rgba(5,5,5,0.7) 65%, rgba(5,5,5,0.45) 100%);
+}
+html.light .project-hero-overlay {
+  background: linear-gradient(to top, rgba(245,240,232,0.92) 35%, rgba(245,240,232,0.7) 65%, rgba(245,240,232,0.45) 100%);
+}
+
 /* Grain overlay for hero section */
 .hero-grain {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px 200px;
+}
+
+/* ---------------------------------------------------------------------------
+   Light mode overrides — éléments avec couleurs hardcodées
+   --------------------------------------------------------------------------- */
+
+/* Grain — moins opaque sur fond clair */
+html.light .hero-grain {
+  opacity: 0.06 !important;
+}
+
+/* Cards projets — fond clair au lieu de bg-ink */
+html.light .bg-ink {
+  background-color: #ede7d9 !important;
+}
+
+/* Header scrollé — fond crème au lieu de ink/80 */
+html.light header.bg-ink\/80 {
+  background-color: rgba(245, 240, 232, 0.88) !important;
+}
+
+/* Section-shell séparateur — adapté au fond clair */
+html.light .section-shell {
+  border-bottom-color: rgba(26, 22, 18, 0.10);
+}
+
+/* Pills compétences — fond et bordure adaptés */
+html.light .border-bone\/15 {
+  border-color: rgba(26, 22, 18, 0.15) !important;
+}
+html.light .bg-bone\/\[0\.07\] {
+  background-color: rgba(26, 22, 18, 0.05) !important;
+}
+
+/* Project detail — tint fixe sombre → on réduit l'opacité */
+html.light [style*="background: linear-gradient"] {
+  opacity: 0.5;
+}
+
+/* Bordure header transparent → légère en light */
+html.light header.border-transparent {
+  border-bottom-color: rgba(26, 22, 18, 0.08) !important;
 }
 
 /* ---------------------------------------------------------------------------

@@ -15,8 +15,7 @@ import { CONTACT } from '../../data/projects';
       <!-- Gradient diagonal de fond (même effet que le hero) -->
       <div
         aria-hidden="true"
-        class="pointer-events-none absolute inset-0 z-0"
-        style="background: radial-gradient(ellipse 80% 60% at 40% 60%, rgba(212,168,83,0.07) 0%, transparent 70%), linear-gradient(135deg, rgba(212,168,83,0.04) 0%, transparent 50%, rgba(242,241,237,0.03) 100%)"
+        class="pointer-events-none absolute inset-0 z-0 footer-gradient"
       ></div>
 
       <!-- Grain SVG overlay -->

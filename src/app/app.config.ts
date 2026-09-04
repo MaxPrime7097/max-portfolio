@@ -9,7 +9,7 @@ import {
   Leaf, CloudRain, LayoutDashboard, MessageCircle, Database, AlertTriangle,
   Rocket, FlaskConical, Microscope, Globe, Handshake, Bell,
   Code2, Layers, Server, Zap, ChevronRight, ArrowRight, ArrowLeft, ArrowDown, ArrowUp,
-  Hexagon, Sparkles, Github, Linkedin, Instagram,
+  Hexagon, Sparkles, Github, Linkedin, Instagram, Sun, Moon,
 } from 'lucide-angular';
 
 import { routes } from './app.routes';
@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
         Leaf, CloudRain, LayoutDashboard, MessageCircle, Database, AlertTriangle,
         Rocket, FlaskConical, Microscope, Globe, Handshake, Bell,
         Code2, Layers, Server, Zap, ChevronRight, ArrowRight, ArrowLeft, ArrowDown, ArrowUp,
-        Hexagon, Sparkles, Github, Linkedin, Instagram,
+        Hexagon, Sparkles, Github, Linkedin, Instagram, Sun, Moon,
       }),
     },
     provideRouter(
