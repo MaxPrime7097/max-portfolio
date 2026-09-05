@@ -10,6 +10,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SectionTracker } from './core/section-tracker';
 import { SectionSpyDirective } from './core/section-spy';
 import { BackToTop } from './shared/back-to-top';
+import { CursorFollower } from './shared/cursor-follower';
 import { SiteHeader } from './components/header/site-header';
 import { SiteFooter } from './components/footer/site-footer';
 import { Hero } from './components/hero/hero';
@@ -27,6 +28,7 @@ import { ContactSection } from './components/contact/contact-section';
     RouterOutlet,
     SectionSpyDirective,
     BackToTop,
+    CursorFollower,
     SiteHeader,
     SiteFooter,
     Hero,

@@ -286,3 +286,44 @@ html.light header.border-transparent {
     --alpha(var(--color-bone) / 2%) 10px 20px
   );
 }
+
+/* ---------------------------------------------------------------------------
+   Scrollbar custom — fine, thumb accent ambre, track transparent
+   --------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 3px;
+  opacity: 0.6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-bright);
+}
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) transparent;
+}
+
+/* Light mode — thumb légèrement plus foncé pour contraste */
+html.light ::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+}
+html.light * {
+  scrollbar-color: var(--color-accent) transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Cursor custom — cache le curseur natif sur desktop
+   --------------------------------------------------------------------------- */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}

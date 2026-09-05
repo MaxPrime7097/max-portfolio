@@ -38,6 +38,7 @@ import { CONTACT } from '../../data/projects';
       <!-- Logo / Nom -->
       <a
         routerLink="/"
+        (click)="scrollToTop()"
         class="flex items-baseline gap-[5px] no-underline"
       >
         <span class="font-display text-[17px] font-extrabold leading-none tracking-[-0.01em] text-bone">
@@ -222,6 +223,10 @@ export class SiteHeader {
   @HostListener('document:keydown.escape')
   onEscape(): void {
     if (this.menuOpen()) this.closeMenu();
+  }
+
+  protected scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   protected toggleMenu(): void {
