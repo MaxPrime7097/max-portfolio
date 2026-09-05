@@ -39,13 +39,22 @@ import { CONTACT } from '../../data/projects';
       <a
         routerLink="/"
         (click)="scrollToTop()"
-        class="flex items-baseline gap-[5px] no-underline"
+        class="flex items-center gap-2.5 no-underline"
       >
-        <span class="font-display text-[17px] font-extrabold leading-none tracking-[-0.01em] text-bone">
-          NLEND
-        </span>
-        <span class="font-display text-[17px] font-extrabold leading-none tracking-[-0.01em] text-accent">
-          MAX
+        <img
+          src="/images/max-prime-logo.webp"
+          alt="Max Prime logo"
+          width="28"
+          height="28"
+          class="h-7 w-7 object-contain rounded-[2px]"
+        />
+        <span class="flex items-baseline gap-[5px]">
+          <span class="font-display text-[17px] font-extrabold leading-none tracking-[-0.01em] text-bone">
+            NLEND
+          </span>
+          <span class="font-display text-[17px] font-extrabold leading-none tracking-[-0.01em] text-accent">
+            MAX
+          </span>
         </span>
       </a>
 

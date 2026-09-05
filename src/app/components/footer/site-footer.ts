@@ -32,13 +32,22 @@ import { CONTACT } from '../../data/projects';
 
         <!-- Colonne gauche : identité + CTA -->
         <div class="flex flex-col gap-5">
-          <div>
-            <p class="m-0 font-display text-[28px] font-extrabold leading-none tracking-[-0.02em] text-bone">
-              NLEND <span class="text-accent">MAX</span>
-            </p>
-            <p class="mt-1.5 m-0 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/50 uppercase">
-              Développeur Web FullStack · Product Builder
-            </p>
+          <div class="flex items-center gap-3">
+            <img
+              src="/images/max-prime-logo.webp"
+              alt="Max Prime logo"
+              width="36"
+              height="36"
+              class="h-9 w-9 object-contain rounded-[2px]"
+            />
+            <div>
+              <p class="m-0 font-display text-[28px] font-extrabold leading-none tracking-[-0.02em] text-bone">
+                NLEND <span class="text-accent">MAX</span>
+              </p>
+              <p class="mt-1.5 m-0 font-mono text-[11px] font-semibold tracking-[0.08em] text-bone/50 uppercase">
+                Développeur Web FullStack · Product Builder
+              </p>
+            </div>
           </div>
 
           <blockquote class="m-0">

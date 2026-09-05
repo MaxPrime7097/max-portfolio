@@ -584,7 +584,7 @@ export const STACK_GROUPS: readonly StackGroup[] = [
     items: [
       { name: 'Scikit-learn',  logo: '/images/skills/scikit-learn.svg' },
       { name: 'TensorFlow',    logo: '/images/skills/tensorflow.svg' },
-      { name: 'Random Forest', logo: '/images/skills/random-forest.png' },
+      { name: 'Random Forest', logo: '/images/skills/random-forest.webp' },
       { name: 'Pandas',        logo: '/images/skills/pandas.svg' },
       { name: 'NumPy',         logo: '/images/skills/numpy.svg' },
     ],
@@ -592,20 +592,20 @@ export const STACK_GROUPS: readonly StackGroup[] = [
   {
     label: 'Soft Skills',
     items: [
-      { name: 'Adaptabilité',       logo: '/images/skills/adaptability.png' },
-      { name: 'Leadership',         logo: '/images/skills/leadership.png' },
-      { name: 'Communication',      logo: '/images/skills/communication.png' },
-      { name: 'Pensée stratégique', logo: '/images/skills/strategic-thinking.png' },
-      { name: 'Autodidacte',        logo: '/images/skills/self-learning.png' },
-      { name: 'Travail en équipe',  logo: '/images/skills/teamwork.png' },
-      { name: 'Créativité',         logo: '/images/skills/creativity.png' },
+      { name: 'Adaptabilité',       logo: '/images/skills/adaptability.webp' },
+      { name: 'Leadership',         logo: '/images/skills/leadership.webp' },
+      { name: 'Communication',      logo: '/images/skills/communication.webp' },
+      { name: 'Pensée stratégique', logo: '/images/skills/strategic-thinking.webp' },
+      { name: 'Autodidacte',        logo: '/images/skills/self-learning.webp' },
+      { name: 'Travail en équipe',  logo: '/images/skills/teamwork.webp' },
+      { name: 'Créativité',         logo: '/images/skills/creativity.webp' },
     ],
   },
   {
     label: 'Langues',
     items: [
-      { name: 'Français — courant', logo: '/images/skills/french.png' },
-      { name: 'Anglais — courant',  logo: '/images/skills/english.png' },
+      { name: 'Français — courant', logo: '/images/skills/french.webp' },
+      { name: 'Anglais — courant',  logo: '/images/skills/english.webp' },
     ],
   },
 ];
