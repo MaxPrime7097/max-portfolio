@@ -38,6 +38,8 @@ import { CONTACT } from '../../data/projects';
               alt="Max Prime logo"
               width="36"
               height="36"
+              loading="lazy"
+              fetchpriority="low"
               class="h-9 w-9 object-contain rounded-[2px]"
             />
             <div>
