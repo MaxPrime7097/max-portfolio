@@ -46,7 +46,6 @@ import { CONTACT } from '../../data/projects';
           alt="Max Prime logo"
           width="28"
           height="28"
-          fetchpriority="low"
           class="h-7 w-7 object-contain rounded-[2px]"
         />
         <span class="flex items-baseline gap-[5px]">

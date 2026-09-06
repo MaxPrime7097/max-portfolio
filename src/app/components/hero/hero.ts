@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
   Inject,
   OnDestroy,
   PLATFORM_ID,
@@ -24,41 +25,36 @@ const LOTTIE_CDN =
   templateUrl: './hero.html',
 })
 export class Hero implements AfterViewInit, OnDestroy {
+  private observer: IntersectionObserver | null = null;
   private scriptLoaded = false;
-  private loadTimeout: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
+    private elRef: ElementRef<HTMLElement>,
   ) {}
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Strategy: wait for window 'load' (all critical resources done), then
-    // use requestIdleCallback (or a 200ms fallback) so the browser picks a
-    // quiet moment to parse the WASM-heavy Lottie bundle.
-    // This keeps the heavy JS execution well outside the TBT window.
-    const inject = () => {
-      if ((window as any).requestIdleCallback) {
-        (window as any).requestIdleCallback(() => this.loadLottieScript(), { timeout: 2000 });
-      } else {
-        this.loadTimeout = setTimeout(() => this.loadLottieScript(), 200);
-      }
-    };
-
-    if (document.readyState === 'complete') {
-      inject();
-    } else {
-      window.addEventListener('load', inject, { once: true });
-    }
+    // Inject Lottie script only once the hero section enters the viewport
+    // (fires after LCP so it doesn't block first paint)
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !this.scriptLoaded) {
+          this.loadLottieScript();
+          this.observer?.disconnect();
+        }
+      },
+      { threshold: 0.01 },
+    );
+    this.observer.observe(this.elRef.nativeElement);
   }
 
   ngOnDestroy(): void {
-    if (this.loadTimeout) clearTimeout(this.loadTimeout);
+    this.observer?.disconnect();
   }
 
   private loadLottieScript(): void {
-    if (this.scriptLoaded) return;
     if (document.querySelector(`script[src="${LOTTIE_CDN}"]`)) {
       this.scriptLoaded = true;
       return;
